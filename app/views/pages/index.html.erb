@@ -1,40 +1,52 @@
 
   <div class="jumbotron">
     <center>
-      <div class="w3-content w3-display-container">
-        <img class="mySlides" src="/slider_image_3.jpg" style="width:80%">
-        <img class="mySlides" src="/slider_image_test.jpg" style="width:80%">
-        <img class="mySlides" src="/slider_image_2.jpg" style="width:80%">
-        <img class="mySlides" src="/slider_image_4.jpg" style="width:80%">
+      <div class="w3-content w3-section" style="max-width:800px">
+        <img class="mySlides" src="slider_image_3.jpg" style="width:100%">
+        <img class="mySlides" src="slider_image_2.jpg" style="width:100%">
+        <img class="mySlides" src="slider_image_4.jpg" style="width:100%">
+        <img class="mySlides" src="slider_image_test.jpg" style="width:100%">
 
-        <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-        <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
       </div>
 
       <script>
-      var slideIndex = 1;
-      showDivs(slideIndex);
+      var myIndex = 0;
+      carousel();
 
-      function plusDivs(n) {
-        showDivs(slideIndex += n);
-      }
-
-      function showDivs(n) {
-        var i;
-        var x = document.getElementsByClassName("mySlides");
-        if (n > x.length) {slideIndex = 1}
-        if (n < 1) {slideIndex = x.length}
-        for (i = 0; i < x.length; i++) {
-           x[i].style.display = "none";
-        }
-        x[slideIndex-1].style.display = "block";
+      function carousel() {
+          var i;
+          var x = document.getElementsByClassName("mySlides");
+          for (i = 0; i < x.length; i++) {
+             x[i].style.display = "none";
+          }
+          myIndex++;
+          if (myIndex > x.length) {myIndex = 1}
+          x[myIndex-1].style.display = "block";
+          setTimeout(carousel, 4000); // Change image every 4 seconds
       }
       </script>
+
 </center>
   </div>
-<h1> Library news .............................</h1>
-<h1> Library news .............................</h1>
 
-<h1> Library news .............................</h1>
 
-<h1> Library news .............................</h1>
+<% for i in 0..2 %>
+<div class="row news_sector">
+  <div class="col-md-6">
+    <img src="http://via.placeholder.com/500x400" />
+  </div>
+
+  <div class="col-md-5 offset-md-1">
+    <h3> Some news </h3>
+    <p> April 13, 2014</p>
+    <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempus, urna sed lacinia suscipit, augue justo lobortis justo, et consectetur purus dolor at erat. Maecenas pulvinar aliquam nisl, at fringilla metus vestibulum id. Curabitur risus mauris, faucibus ut erat nec, vulputate sodales urna. Aliquam posuere sapien eu iaculis vehicula. Maecenas non laoreet lacus. Suspendisse vitae tempor felis. Pellentesque nec condimentum eros, vitae mattis quam. Proin purus enim, sagittis vitae scelerisque a, commodo non ligula. Nullam sed tincidunt ex, vitae ultrices magna. Curabitur fringilla ipsum non diam bibendum facilisis...</a>
+  </div>
+</div>
+<% end %>
+
+
+<style>
+.news_sector{
+  margin-bottom: 5%;
+}
+</style>
