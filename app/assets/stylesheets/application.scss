@@ -13,3 +13,19 @@
  // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
  @import "bootstrap-sprockets";
  @import "bootstrap";
+.navbar-default, .dropdown-menu{
+background-color: rgba(255,255,255,0.9);
+}
+
+
+ body{
+   background-image: url("/background.jpg");
+   background-repeat: no-repeat;
+   background-size: cover;
+ }
+ .container{
+   background-color: rgba(255,255,255,0.8);
+ }
+.jumbotron{
+  background-color: rgba(255,255,255,0.2);
+}
