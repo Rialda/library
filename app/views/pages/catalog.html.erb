@@ -1,0 +1,24 @@
+<% for i in 0..3 %>
+<div class="row">
+  <br/><br/>
+  <% for j in 0..3 %>
+  <div class="col-md-3">
+    <a href="single_item">
+    <img src="http://via.placeholder.com/250x300" class="img-responsive"/>
+    <h5><strong>Title, author</strong></h5>
+    <h6> Edition, YYYY </h6>
+  </a>
+  </div>
+  <% end %>
+</div>
+<% end %>
+
+<center>
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#"><<</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">>></a></li>
+  </ul>
+</center>
