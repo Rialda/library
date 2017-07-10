@@ -1,39 +1,57 @@
-<h2>Sign up</h2>
+<div class="form-group edit_form">
 
+<h3>Registration</h3>
+
+<span class="have_account" style="float:right; margin-top:-8%;"><%= link_to('Already have an account? Log in!', new_user_session_path) %></span>
+
+<br/><br/>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, autofocus: true,  :class=>'form-control' %>
   </div>
-
+<br/>
   <div class="field">
-    <%= f.label :firstname %><br/>
-    <%= f.text_field :firstname %>
+    <%= f.label  "First name" %><br/>
+    <%= f.text_field :firstname, :class=>'form-control'%>
   </div>
-
+<br/>
   <div class="field">
-    <%= f.label :lastname %><br/>
-    <%= f.text_field :lastname%>
+    <%= f.label "Last name" %><br/>
+    <%= f.text_field :lastname, :class=>'form-control'%>
   </div>
-
+<br/>
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: "off", :class=>'form-control' %>
   </div>
-
+<br/>
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off",  :class=>'form-control' %>
   </div>
-
+<br/>
   <div class="actions">
-    <%= f.submit "Register" %>
+    <%= f.submit "Register",  :class=>'btn-info' %>
   </div>
 <% end %>
+</div>
+<br/><br/>
 
-<%= render "devise/shared/links" %>
+
+<style>
+.edit_form{
+  width: 40%;
+  height: auto;
+  margin-left: 30%;
+}
+.have_account{
+  color: #4099FF;
+}
+
+</style>

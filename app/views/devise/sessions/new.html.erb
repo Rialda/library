@@ -1,15 +1,18 @@
-<h2>Log in</h2>
+<div class="form-group edit_form">
+  <h3>Log in</h3><br/>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, autofocus: true, :class=>'form-control' %>
   </div>
+  <br/>
 
   <div class="field">
     <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: "off", :class=>'form-control' %>
   </div>
+  <br/>
 
   <% if devise_mapping.rememberable? -%>
     <div class="field">
@@ -17,10 +20,23 @@
       <%= f.label :remember_me %>
     </div>
   <% end -%>
-
+<br/>
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Log in", :class=>"btn-info" %>
   </div>
 <% end %>
+<br/><br/>
 
 <%= render "devise/shared/links" %>
+<br/><br/>
+</div>
+
+<style>
+.edit_form{
+  width: 40%;
+  height: auto;
+  margin-left: 30%;
+}
+
+
+</style>
