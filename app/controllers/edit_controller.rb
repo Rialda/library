@@ -3,6 +3,9 @@ def new
   @category = Category.new
   @categories = Category.all
 end
+def edit
+  @category = C.find params[:id]
+end
 
 def create
 @category=Category.new(category_params)
@@ -11,11 +14,6 @@ if @category.save
   redirect_to edit_neww_path
 end
 
-end
-
-
-def edit
-  @category = Category.find params[:id]
 end
 
 private
