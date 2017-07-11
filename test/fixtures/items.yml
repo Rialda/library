@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  item_name: MyText
+  author: MyText
+  edition: MyText
+  year_published: 
+  publisher: 
+  isbn: 
+  on_stack: 
+  price: 
+  description: MyText
+  category: one
+  subcategory: one
+  tag: one
+  language: one
+  borrow: 
+  buy: 
+
+two:
+  item_name: MyText
+  author: MyText
+  edition: MyText
+  year_published: 
+  publisher: 
+  isbn: 
+  on_stack: 
+  price: 
+  description: MyText
+  category: two
+  subcategory: two
+  tag: two
+  language: two
+  borrow: 
+  buy: 

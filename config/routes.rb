@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'pages/news' => 'pages#news'
   get 'pages/catalog' => 'pages#catalog'
   get 'pages/single_item' => 'pages#single_item'
+  get 'edit/edit_categories_options' => 'edit#edit_categories_options'
 
 
 

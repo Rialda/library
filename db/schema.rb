@@ -10,10 +10,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170711082632) do
+ActiveRecord::Schema.define(version: 20170711093027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.text     "category_name"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.text     "item_name"
+    t.text     "author"
+    t.text     "edition"
+    t.integer  "year_published"
+    t.text     "publisher"
+    t.bigint   "isbn"
+    t.integer  "on_stack"
+    t.decimal  "price"
+    t.text     "description"
+    t.integer  "category_id"
+    t.integer  "subcategory_id"
+    t.integer  "tag_id"
+    t.integer  "language_id"
+    t.boolean  "borrow"
+    t.boolean  "buy"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["category_id"], name: "index_items_on_category_id", using: :btree
+    t.index ["language_id"], name: "index_items_on_language_id", using: :btree
+    t.index ["subcategory_id"], name: "index_items_on_subcategory_id", using: :btree
+    t.index ["tag_id"], name: "index_items_on_tag_id", using: :btree
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.text     "language_name"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "subcategories", force: :cascade do |t|
+    t.text     "subcategory_name"
+    t.integer  "category_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["category_id"], name: "index_subcategories_on_category_id", using: :btree
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.text     "tag_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
@@ -37,4 +87,9 @@ ActiveRecord::Schema.define(version: 20170711082632) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "items", "categories"
+  add_foreign_key "items", "languages"
+  add_foreign_key "items", "subcategories"
+  add_foreign_key "items", "tags"
+  add_foreign_key "subcategories", "categories"
 end
