@@ -1,5 +1,15 @@
 <% if !user_signed_in? %>
+
   <%= render '/layouts/nav_viewer' %>
+
 <% else %>
+
+  <% if current_user.ismember==true %>
+  <%= render '/layouts/nav_ius_user' %>
+  <% elsif current_user.isadmin==true %>
+  <%= render '/layouts/nav_admin' %>
+  <% else %>
   <%= render '/layouts/nav_guest' %>
+  <% end %>
+
 <% end %>
