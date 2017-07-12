@@ -4,7 +4,7 @@ def new
   @categories = Category.all
 end
 def edit
-  @category = C.find params[:id]
+  @category = Category.find params[:id]
 end
 
 def create
@@ -14,6 +14,10 @@ if @category.save
   redirect_to edit_neww_path
 end
 
+end
+
+def update
+  @category = Category.find params[:id]
 end
 
 private
