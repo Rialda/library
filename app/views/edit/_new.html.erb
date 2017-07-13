@@ -1,23 +1,11 @@
-
-
-<div class="row">
-
-  <% for @i in @categories %>
-  <%=  @i.category_name %>
-  <% end %>
-
-
-<%= form_for @category, url: {action: "create"} do |f| %>
-
-<div class="col-md-6">
 <div class="form-group">
+<%= form_for @category, remote: true, url: {action: "create"} do |f| %>
+
 
   <label for="ime1">Add a new category: </label><br/>
   <%= f.text_field :category_name, id:"ime1", class: "form-control" %></br>
   <%= f.submit "Add", class:"btn-info" %>
-</div>
-</div>
+
+
 <% end %>
-
-
 </div>

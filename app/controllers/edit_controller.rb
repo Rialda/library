@@ -1,23 +1,21 @@
 class EditController < ApplicationController
-def new
-  @category = Category.new
-  @categories = Category.all
+
+def show
+    @categories = Category.all
+    @category=Category.new
 end
+
 def edit
-  @category = Category.find params[:id]
+  @category = C.find params[:id]
 end
 
 def create
 @category=Category.new(category_params)
 
 if @category.save
-  redirect_to edit_neww_path
+  redirect_to :back
 end
 
-end
-
-def update
-  @category = Category.find params[:id]
 end
 
 private

@@ -1,19 +1,17 @@
 Rails.application.routes.draw do
+  resources :pages
   resources :edit
   devise_for :users
   root 'pages#index'
 
-  get 'pages/home' => 'pages#home'
+  get 'home' => 'pages#home'
 
-  get 'pages/profile' => 'pages#profile'
+  get 'profile' => 'pages#profile'
 
-  get 'pages/news' => 'pages#news'
-  get 'pages/catalog' => 'pages#catalog'
-  get 'pages/single_item' => 'pages#single_item'
-  
-  post 'edit/new' => 'edit/new', as: 'edit_neww'
-  get 'edit/new' => 'edit/new', as: 'edit_new'
-  put 'edit/new' => 'edit/new', as: 'edit_newput'
+  get 'news' => 'pages#news'
+  get '/catalog' => 'pages#catalog'
+  get 'single_item' => 'pages#single_item'
+
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
