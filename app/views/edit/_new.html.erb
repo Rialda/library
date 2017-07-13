@@ -1,11 +1,19 @@
 <div class="form-group">
-<%= form_for @category, remote: true, url: {action: "create"} do |f| %>
-
-
+<%= form_for @category, url: {action: "create"} do |f| %>
   <label for="ime1">Add a new category: </label><br/>
   <%= f.text_field :category_name, id:"ime1", class: "form-control" %></br>
   <%= f.submit "Add", class:"btn-info" %>
-
-
 <% end %>
+</div>
+
+<div class="form-group">
+<div class="col-md-offset-2">
+<%= form_for @subcategory, url: {action: "new"} do |f| %>
+  <label for="ime1">Add a new subcategory: </label><br/>
+  <%= f.text_field :subcategory_name, id:"ime1", class: "form-control" %></br>
+  <label for="ime2">-> belonging category id: </label><br/>
+  <%= f.text_field :category_id, id:"ime2", class: "form-control" %></br>
+  <%= f.submit "Add", class:"btn-info" %>
+<% end %>
+</div>
 </div>
