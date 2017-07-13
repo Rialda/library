@@ -16,7 +16,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FENS <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" >FENS <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Subcat1</a></li>
             <li><a href="#">Subcat2</a></li>
@@ -26,31 +26,39 @@
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FASS <span class="caret"></span></a>
+      <% for @c in @categories %>
+        <% @cid=Category.find_by_id(@c) %>
+        <% @cname=Category.find_by_category_name(@c) %>
+      <li>
+        <%= link_to (@c.category_name), root_path, { :class => 'dropwdown-toggle', 'data-toggle' => 'dropdown'} %>
+        <ul class="dropdown-menu">
+
+          <li>
+            <%for @s in @subcategories %>
+              <% @scid=@s.category_id%>
+              <% if (@scid==@c.id) %>
+              <%= link_to (@s.subcategory_name), root_path %><br/>
+              <% end %>
+            <% end %>
+          </li>
+
+          <li role="separator" class="divider"></li>
+          <li><%= link_to (@c.fullname), root_path %></li>
+        </ul>
+      </li>
+      <% end %>
           <ul class="dropdown-menu">
-            <li><a href="#">Subcat1</a></li>
-            <li><a href="#">Subcat2</a></li>
-            <li><a href="#">Subcat3</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">CATEGORY</a></li>
+            <li>
+              <% for @s in @subcategories %>
+              <% @sid=Category.find_by_id(@s) %>
+              <% @sname=Category.find_by_category_name(@s) %>
+              <li><%= link_to(root_path) do %><strong><%= @s.subcategory_name %></strong><% end %></li>
+              <% end %>
+            </li>
 
           </ul>
         </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">FEBA <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Subcat1</a></li>
-            <li><a href="#">Subcat2</a></li>
-            <li><a href="#">Subcat3</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">CATEGORY</a></li>
 
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CAT4 <span class="caret"></span></a>
-
-        </li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
