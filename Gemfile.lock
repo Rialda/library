@@ -42,6 +42,9 @@ GEM
     autoprefixer-rails (7.1.2.1)
       execjs
     bcrypt (3.1.11)
+    best_in_place (3.1.1)
+      actionpack (>= 3.2)
+      railties (>= 3.2)
     bindex (0.5.0)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
@@ -133,6 +136,8 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    rest_in_place (2.5.0)
+      rails (>= 3.1)
     sass (3.4.25)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -177,6 +182,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  best_in_place
   bootstrap-sass (~> 3.3.6)
   byebug
   coffee-rails (~> 4.2)
@@ -188,6 +194,7 @@ DEPENDENCIES
   puma (~> 3.0)
   rails (~> 5.0.2)
   rails_12factor
+  rest_in_place
   sass-rails (~> 5.0)
   spring
   spring-watcher-listen (~> 2.0.0)

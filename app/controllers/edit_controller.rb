@@ -1,14 +1,15 @@
 class EditController < ApplicationController
 
 def show
-    @categories = Category.all
-    @category=Category.new
-    @subcategory=Subcategory.new
-    @subcategories=Subcategory.all
+  @categories = Category.all
+  @subcategories=Subcategory.all
 end
 
-def edit
-  @category = C.find params[:id]
+def cat_editing
+  @categories = Category.all
+  @subcategories=Subcategory.all
+  @c = Category.find(params[:id])
+
 end
 
 def create
@@ -16,7 +17,6 @@ def create
 if @category.save
   redirect_to :back
 end
-
 end
 
 def new
@@ -26,13 +26,33 @@ def new
   end
 end
 
+def update
+  # Find object using form parameters
+   @c = Category.find(params[:id])
+   # Update the object
+   if @c.update_attributes(category_params)
+     # If update succeeds, redirect to the list action
+     flash[:alert] = "Updated."
+     redirect_to :back
+   else
+     # If save fails, redisplay the form so user can fix problems
+     render('_alter')
+   end
+end
 
+def destroy
+   Category.find(params[:id]).destroy
+   redirect_to edit_path
+ end
 
 private
 def category_params
   params.require(:category).permit(:category_name, :fullname)
 end
-
+private
+def categoryupdate_params
+  params.permit(:category).permit(:category_name, :fullname)
+end
 private
 def subcategory_params
   params.require(:subcategory).permit(:subcategory_name, :category_id)

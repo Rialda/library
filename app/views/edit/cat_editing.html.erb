@@ -1,0 +1,35 @@
+<div class="form-group">
+<%= form_for @c, :url=>{:action => 'update', :id => @c.id} do |f| %>
+  <label for="ime1">Editing <%=@c.fullname %>: </label><br/>
+  <%= f.text_field :category_name, id:@c.id, class: "form-control", placeholder: @c.category_name %></br>
+  <%= f.text_field :fullname, id:@c.id, class: "form-control", placeholder: @c.fullname %></br>
+
+  <%= f.submit "Edit", class:"btn-info btn1" %>
+<% end %>
+</div>
+<br/>
+
+<span><%= @c.fullname %></span>
+<%= form_for(@c, :html => { :method => :delete, :remote => true }) do |f| %>
+<%= f.submit "Delete", class:"btn-danger btn_delete" %>
+
+<% end %>
+<br/>
+
+<style>
+select{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 35px;
+  padding-right: 35px;
+  background-color: white;
+  font-size: 18px;
+}
+.btn1{
+  paddng: 15px !important;
+  font-size: 18px;
+}
+.btn_delete{
+}
+
+</style>

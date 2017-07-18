@@ -1,20 +1,17 @@
 <div class="form-group">
-<%= form_for @category, url: {action: "create"} do |f| %>
-  <label for="ime1">Add a new category: </label><br/>
-  <%= f.text_field :category_name, id:"ime1", class: "form-control" %></br>
+<%= form_for Category.new, url: {action: "create"} do |f| %>
+  <label for="ime1">Add new: </label><br/>
+  <%= f.text_field :category_name, id:"ime1", class: "form-control", placeholder: "Category abbreviation" %></br>
+  <%= f.text_field :fullname, id:"ime2", class: "form-control", placeholder: "Full name of the category" %></br>
 
-  <label for="ime2">Add a full name of the category: </label><br/>
-  <%= f.text_field :fullname, id:"ime2", class: "form-control" %></br>
-  
-  <%= f.submit "Add", class:"btn-info" %>
+  <%= f.submit "Add", class:"btn-info btn1" %>
 <% end %>
 </div>
 <br/>
 <div class="form-group">
 <div class="col-md-offset-2">
-<%= form_for @subcategory, url: {action: "new"} do |f| %>
-  <label for="ime1">Add a new subcategory: </label><br/>
-  <%= f.text_field :subcategory_name, id:"ime1", class: "form-control" %></br>
+<%= form_for Subcategory.new, url: {action: "new"} do |f| %>
+  <%= f.text_field :subcategory_name, id:"ime1", class: "form-control", placeholder: "Subcategory name" %></br>
   <label for="ime2">-> belonging category: </label><br/>
   <div class="dropdown">
   <%= f.collection_select(:category_id, Category.all, :id, :category_name, class: "drops") %>
@@ -34,7 +31,7 @@ select{
   background-color: white;
   font-size: 18px;
 }
-.btn-info{
+.btn1{
   paddng: 15px !important;
   font-size: 18px;
 }
