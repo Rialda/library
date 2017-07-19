@@ -4,6 +4,12 @@ class ApplicationController < ActionController::Base
 
 #strong parameters
 before_action :configure_permitted_parameters, if: :devise_controller?
+before_action :set_variables
+
+def set_variables
+  @categories=Category.all
+  @subcategories=Subcategory.all
+end
 
 protected
 

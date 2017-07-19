@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/catalog' => 'pages#catalog'
   get 'single_item' => 'pages#single_item'
 
+
 get 'edit/show'=> 'edit/show', as: 'edit'
 
 get 'edit/create'=> 'edit/create', as: 'create'
@@ -30,7 +31,7 @@ post 'edit/new'=> 'edit/new', as: '_new'
   get 'edit/category/:id' => 'edit#category', as: 'category'
   get 'edit/subcategory' => 'edit/subcategory', as: 'subcategory'
 
-
+#items_edit
   get 'items_edit/show'=> 'items_edit/show', as: 'items_edit'
   get 'items_edit/all_items'=> 'items_edit/all_items', as: 'all_items'
 
@@ -49,6 +50,11 @@ post 'edit/new'=> 'edit/new', as: '_new'
   get "items_edit/item/:id" => "items_edit#item", as: :item
   patch 'items_edit/update' => 'items_edit/update', as: 'update'
   delete "items_edit/item_delete/:id" => "items_edit#item_delete", as: :item_delete
+
+
+  #news
+  get 'news/show'=> 'news/show', as: 'edit_news'
+
 
 
 
