@@ -1,0 +1,76 @@
+
+
+<div class="form-group">
+<%= form_for Item.new, url: {action: "create"} do |f| %>
+  <h3> Add new: </h3>
+  <%= f.text_field :item_name, id:"ime1", class: "form-control", placeholder: "Full name of the book" %></br>
+  <%= f.text_field :author, id:"ime2", class: "form-control", placeholder: "Author name" %></br>
+  <%= f.text_field :edition, id:"ime2", class: "form-control", placeholder: "Edition/Version" %></br>
+  <%= f.text_field :year_published, id:"ime2", class: "form-control", placeholder: "Year published (YYYY)" %></br>
+  <%= f.text_field :publisher, id:"ime2", class: "form-control", placeholder: "Publisher" %></br>
+  <%= f.text_field :isbn, id:"ime2", class: "form-control", placeholder: "ISBN" %></br>
+  <%= f.text_field :on_stack, id:"ime2", class: "form-control", placeholder: "Number of items on stack" %></br>
+  <%= f.text_field :price, id:"ime2", class: "form-control", placeholder: "Price (if any)" %></br>
+  <%= f.text_field :description, id:"ime2", class: "form-control", placeholder: "Description" %></br>
+  <%= f.file_field :image, id:"ime2", class: "form-control" %></br>
+
+
+  <div class="dropdown">
+  <%= f.collection_select(:category_id, Category.all, :id, :category_name, class: "drops") %>
+</div>
+
+<div class="dropdown">
+<%= f.collection_select(:subcategory_id, Subcategory.all, :id, :subcategory_name, class: "drops") %>
+</div>
+<br/>
+<div class="dropdown">Language:
+<%= f.collection_select(:language_id, Language.all, :id, :language_name, class: "drops") %>&nbsp;&nbsp; <%= link_to "Don't see the languange? Add it here!", lang_create_path %>
+</div>
+<div class="dropdown">Tag:
+<%= f.collection_select(:tag_id, Tag.all, :id, :tag_name, class: "drops") %>
+</div>
+Allowed to borrow:  &nbsp;&nbsp; <%= f.check_box :borrow %> <br /><br/>
+Is for sale?  &nbsp;&nbsp; <%= f.check_box :buy%> <br /><br/>
+
+<br/>
+
+<br/>
+
+
+  <%= f.submit "Add", class:"btn-info btn1" %>
+<% end %>
+
+</div>
+
+<br/>
+
+
+<style>
+select{
+margin-bottom: 4px;
+  background-color: rgba(255,255,255,0.2);
+  font-size: 18px;
+}
+.btn1{
+  paddng: 15px !important;
+  font-size: 18px;
+}
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  padding: 10px;
+}
+
+/* Might want to wrap a span around your checkbox text */
+.checkboxtext
+{
+  /* Checkbox text */
+  font-size: 110%;
+  display: inline;
+}
+
+</style>

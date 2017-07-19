@@ -15,6 +15,7 @@ end
 def create
 @category=Category.new(category_params)
 if @category.save
+  flash[:alert] = "Saved."
   redirect_to :back
 end
 end
@@ -22,6 +23,7 @@ end
 def new
   @subcategory=Subcategory.new(subcategory_params)
   if @subcategory.save
+    flash[:alert] = "Saved."
     redirect_to :back
   end
 end

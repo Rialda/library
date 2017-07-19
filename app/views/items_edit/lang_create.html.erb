@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-6">
+<div class="form-group">
+<%= form_for Language.new, url: {action: "new_lang"} do |f| %>
+  <label for="ime1">Add new: </label><br/>
+  <%= f.text_field :language_name, id:"ime1", class: "form-control", placeholder: "Language name" %></br>
+
+  <%= f.submit "Add this language", class:"btn-info btn1" %>
+<% end %>
+</div>
+</div>
+
+
+<div class="col-md-6">
+<div class="form-group">
+  <% for @i in @languages %>
+  <% @l=Language.find_by_id(@i.id)%>
+<%= form_for @l, url: {action: "edit_lang", :id => @l.id} do |f| %>
+<label for="ime1">Edit existing: </label><br/>
+<%= f.text_field :language_name, id:"ime1", class: "form-control", placeholder: "Language name" %>
+
+<%= f.submit "Edit this language", class:"btn-info btn1" %></br>
+<% end %>
+<%= link_to 'Delete language', lang_delete_path(@l),
+          data: {:confirm => 'Are you sure?'}, :method => :delete %>
+        </br></br>
+<% end %>
+</div>
+</div>
+
+
+
+
+
+
+</div>

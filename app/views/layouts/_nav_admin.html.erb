@@ -61,7 +61,8 @@
         </form>
         <li><%= link_to image_tag("/edit_categories.png", :class=>"img-responsive", :id=>"edit_categories", :title=>"Edit Categories"), edit_path(:show) %></li>
 
-        <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="/edit_items.png" class="img-responsive" id="edit_items" title="Edit ITEMS"/></a></li>
+        <li><%= link_to image_tag("/edit_items.png", :class=>"img-responsive", :id=>"edit_items", :title=>"Edit Items"), items_edit_path(:show) %></li>
+        
         <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="/edit_news.png" class="img-responsive" id="edit_news" title="Edit NEWS"/></a></li>
         <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="/edit_users.png" class="img-responsive" id="edit_users" title="Edit USERS"/></a></li>
         <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="/borrowed_books.png" class="img-responsive" id="borrowed_books" title="Borrowed books"/></a></li>

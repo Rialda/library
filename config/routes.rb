@@ -31,6 +31,17 @@ post 'edit/new'=> 'edit/new', as: '_new'
   get 'edit/subcategory' => 'edit/subcategory', as: 'subcategory'
 
 
+  get 'items_edit/show'=> 'items_edit/show', as: 'items_edit'
+  get 'items_edit/all_items'=> 'items_edit/all_items', as: 'all_items'
+
+  post 'items_edit/create'=> 'items_edit/create', as: 'item_create'
+
+  get 'items_edit/lang_create'=> 'items_edit/lang_create', as: 'lang_create'
+  post 'items_edit/new_lang'=> 'items_edit/new_lang', as: 'new_lang'
+  patch 'items_edit/edit_lang' => 'items_edit/edit_lang', as: 'edit_lang'
+  delete "items_edit/language_del/:id" => "items_edit#language_del", as: :lang_delete
+
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
