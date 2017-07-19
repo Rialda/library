@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-6">
+<div class="form-group">
+<%= form_for Tag.new, url: {action: "new_tag"} do |f| %>
+  <label for="ime1">Add new: </label><br/>
+  <%= f.text_field :tag_name, id:"ime1", class: "form-control", placeholder: "New tag..." %></br>
+
+  <%= f.submit "Add this tag", class:"btn-info btn1" %>
+<% end %>
+</div>
+</div>
+
+
+<div class="col-md-6">
+<div class="form-group">
+  <% for @i in @tags %>
+  <% @t=Tag.find_by_id(@i.id)%>
+<%= form_for @t, url: {action: "edit_tag", :id => @t.id} do |f| %>
+<label for="ime1">Edit existing: </label><br/>
+<%= f.text_field :tag_name, id:"ime1", class: "form-control", placeholder: "Tag" %>
+
+<%= f.submit "Edit this tag", class:"btn-info btn1" %></br>
+<% end %>
+<%= link_to 'Delete tag', tag_delete_path(@t),
+          data: {:confirm => 'Are you sure?'}, :method => :delete %>
+        </br>
+</br>
+<% end %>
+<strong>(Tags can only be DELETED if they do not belong to any items.) </strong>
+</div>
+</div>
+
+
+
+
+
+
+</div>

@@ -1,8 +1,15 @@
+<div class="row">
 
+  <div class="col-md-8">
 
 <div class="form-group">
-<%= form_for Item.new, url: {action: "create"} do |f| %>
-  <h3> Add new: </h3>
+<%= form_for @item, url: {action: "update", :id => @item.id} do |f| %>
+  <h3> Edit: </h3>
+  <span class="deletion"> <%= link_to 'Delete this entry', item_delete_path(@item),
+              data: {:confirm => 'Are you sure? This cannot be undone.'}, :method => :delete %></span>
+
+    </br></br></br>
+
   <%= f.text_field :item_name, id:"ime1", class: "form-control", placeholder: "Full name of the book" %></br>
   <%= f.text_field :author, id:"ime2", class: "form-control", placeholder: "Author name" %></br>
   <%= f.text_field :edition, id:"ime2", class: "form-control", placeholder: "Edition/Version" %></br>
@@ -12,7 +19,7 @@
   <%= f.text_field :on_stack, id:"ime2", class: "form-control", placeholder: "Number of items on stack" %></br>
   <%= f.text_field :price, id:"ime2", class: "form-control", placeholder: "Price (if any)" %></br>
   <%= f.text_area :description, id:"ime2", class: "form-control", placeholder: "Description", rows: 8  %></br>
-  <%= f.file_field :image, id:"ime2", class: "form-control" %></br>
+  Replace the current image: <%= f.file_field :image, id:"ime2", class: "form-control" %></br>
 
 
   <div class="dropdown">
@@ -37,15 +44,31 @@ Is for sale?  &nbsp;&nbsp; <%= f.check_box :buy%> <br /><br/>
 <br/>
 
 
-  <%= f.submit "Add", class:"btn-info btn1" %>
+  <%= f.submit "Save changes", class:"btn-info btn1" %>
+
+
 <% end %>
+
+
 
 </div>
 
 <br/>
+</div>
 
+<div class="col-md-4">
+</br></br>
+  <%= image_tag @item.image.url, :size=>"350x400" %>
+</div>
+
+
+</div>
 
 <style>
+.deletion{
+  float: right;
+  font-weight: bold;
+}
 select{
 margin-bottom: 4px;
   background-color: rgba(255,255,255,0.2);
