@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'single_item' => 'pages#single_item'
 
 get 'edit/show'=> 'edit/show', as: 'edit'
+
 get 'edit/create'=> 'edit/create', as: 'create'
 get 'edit/new'=> 'edit/new', as: 'new'
 post 'edit/create'=> 'edit/create', as: '_create'
@@ -20,8 +21,11 @@ post 'edit/new'=> 'edit/new', as: '_new'
 
   post 'edit/new' => 'edit/new', as: 'edit_new'
   patch 'edit/update' => 'edit/update', as: 'edit_update'
+  patch 'edit/updates' => 'edit/updates', as: 'edit_updates'
 
   get "edit/cat_editing/:id" => "edit#cat_editing", as: :cat_editing
+  delete "edit/category/:id" => "edit#category", as: :cat_editing_delete
+  delete "edit/subcategory/:id" => "edit#subcategory", as: :subcat_editing_delete
 
   get 'edit/category/:id' => 'edit#category', as: 'category'
   get 'edit/subcategory' => 'edit/subcategory', as: 'subcategory'

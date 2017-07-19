@@ -1,20 +1,42 @@
 <div class="form-group">
 <%= form_for @c, :url=>{:action => 'update', :id => @c.id} do |f| %>
-  <label for="ime1">Editing <%=@c.fullname %>: </label><br/>
+  <label for="ime1">Category - <%=@c.fullname %>: </label><br/>
   <%= f.text_field :category_name, id:@c.id, class: "form-control", placeholder: @c.category_name %></br>
   <%= f.text_field :fullname, id:@c.id, class: "form-control", placeholder: @c.fullname %></br>
 
-  <%= f.submit "Edit", class:"btn-info btn1" %>
+  <%= f.submit "Edit", class:"btn-info btn1" %><br/><br/>
+  <%= link_to 'Destroy', cat_editing_delete_path(@c),
+            data: {:confirm => 'Are you sure?'}, :method => :delete %>
+            <strong>(Category cannot be destroyed as long as it has subcategories.)  </strong>
+
 <% end %>
 </div>
 <br/>
-
-<span><%= @c.fullname %></span>
-<%= form_for(@c, :html => { :method => :delete, :remote => true }) do |f| %>
-<%= f.submit "Delete", class:"btn-danger btn_delete" %>
-
-<% end %>
 <br/>
+<hr/>
+<br/>
+<br/>
+
+<% for @j in @subcategories %>
+  <% @s=Subcategory.find_by_id(@j.id) %>
+  <% if (@s.category_id==@c.id) %>
+
+  <div class="form-group">
+  <%= form_for @s, :url=>{:action => 'updates', :id => @s.id} do |f| %>
+    <label for="ime1">Subcategory - <%=@s.subcategory_name %>: </label><br/>
+    <%= f.text_field :subcategory_name, id:@s.id, class: "form-control", placeholder: @s.subcategory_name %></br>
+
+    <%= f.submit "Edit", class:"btn-info btn1" %><br/><br/>
+  <% end %>
+  <%= link_to 'Destroy', subcat_editing_delete_path(@s),
+            data: {:confirm => 'Are you sure?'}, :method => :delete %>
+  </div>
+
+    <br/>
+  <% end %>
+<% end %>
+<br/><br/><br/>
+
 
 <style>
 select{

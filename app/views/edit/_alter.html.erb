@@ -1,6 +1,12 @@
 <% for @i in @categories %>
 <% @c=Category.find_by_id(@i.id) %>
-  <%= link_to (@c.category_name), cat_editing_path(@c) %><br/>
+<strong>  <%= link_to (@c.category_name), cat_editing_path(@c) %></strong><br/>
+  <% for @j in @subcategories %>
+  <% @s=Subcategory.find_by_id(@j.id) %>
+  <% if (@s.category_id==@c.id) %>
+  <p><%= link_to (@s.subcategory_name), cat_editing_path(@c) %></p><br/>
+  <% end %>
+  <%end %>
 <% end %>
 <br/>
 
@@ -17,6 +23,9 @@ select{
 .btn1{
   paddng: 15px !important;
   font-size: 18px;
+}
+p{
+  padding-left: 10px;
 }
 
 </style>

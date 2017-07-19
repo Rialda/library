@@ -40,10 +40,42 @@ def update
    end
 end
 
+def updates
+  # Find object using form parameters
+   @s = Subcategory.find(params[:id])
+   # Update the object
+   if @s.update_attributes(subcategory_params)
+     # If update succeeds, redirect to the list action
+     flash[:alert] = "Updated."
+     redirect_to :back
+   else
+     # If save fails, redisplay the form so user can fix problems
+     render('_alter')
+   end
+end
+
 def destroy
-   Category.find(params[:id]).destroy
-   redirect_to edit_path
- end
+  @s = Subcategory.find(params[:id])
+  @s.destroy
+
+  respond_to do |format|
+    format.html { redirect_to subcat_editing_delete_path(@s) }
+    format.xml  { head :ok }
+  end
+end
+
+def category
+  @c = Category.find(params[:id])
+  @c.destroy
+  redirect_to edit_path
+
+end
+
+def subcategory
+  @s = Subcategory.find(params[:id])
+  @s.destroy
+  redirect_to :back
+end
 
 private
 def category_params
