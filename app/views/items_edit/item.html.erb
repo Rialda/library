@@ -5,6 +5,7 @@
 <div class="form-group">
 <%= form_for @item, url: {action: "update", :id => @item.id} do |f| %>
   <h3> Edit: </h3>
+
   <span class="deletion"> <%= link_to 'Delete this entry', item_delete_path(@item),
               data: {:confirm => 'Are you sure? This cannot be undone.'}, :method => :delete %></span>
 
@@ -19,8 +20,12 @@
   <%= f.text_field :on_stack, id:"ime2", class: "form-control", placeholder: "Number of items on stack" %></br>
   <%= f.text_field :price, id:"ime2", class: "form-control", placeholder: "Price (if any)" %></br>
   <%= f.text_area :description, id:"ime2", class: "form-control", placeholder: "Description", rows: 8  %></br>
-  Replace the current image: <%= f.file_field :image, id:"ime2", class: "form-control" %></br>
-
+  Replace the current image: <%= @item.image_file_name%> <%= f.file_field :image, id:"ime2", class: "form-control" %></br>
+  <% if @item.document_file_name!=nil%>
+  Replace the current preview document: <%= @item.document_file_name%><%= f.file_field :document, id:"ime2", class: "form-control" %></br>
+  <% else %>
+  Upload the preview document: <%= f.file_field :document, id:"ime2", class: "form-control" %></br>
+  <% end %>
 
   <div class="dropdown">
   <%= f.collection_select(:category_id, Category.all, :id, :category_name, class: "drops") %>
@@ -59,6 +64,12 @@ Is for sale?  &nbsp;&nbsp; <%= f.check_box :buy%> <br /><br/>
 <div class="col-md-4">
 </br></br>
   <%= image_tag @item.image.url, :size=>"350x400" %>
+  <br/><br/>
+  <% if @item.document_file_name!=nil%>
+<%= link_to ("PDF Book Preview"), @item.document.url %>
+<% else %>
+<p> No Book Preview, please upload it. </p>
+<% end %>
 </div>
 
 

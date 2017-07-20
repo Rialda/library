@@ -1,1 +1,43 @@
-add news
+<div class="row">
+
+  <h2>&nbsp; Edit articles: </h2>
+  <%= link_to ("Write an article"), write_news_path, { :class => 'write_new btn-info'} %>
+<hr/>
+  <div class="col-md-12">
+    <div class="row">
+  <% for @i in @news %>
+    <% @n=News.find_by_id(@i.id) %>
+    <div class="col-md-5 single_article">
+    <%= link_to image_tag(@n.cover_image.url, :size=>"500x350", :class=>"existing_news"),  single_news_edit_path(@n)%><br/></br>
+   <center> <h4>  <%= @n.title %>, <%= @n.author %>, <%= @n.created_at %> </h4> </center><br/></br>
+  </div>
+  <% end %>
+
+</div>
+  </div>
+
+</div>
+
+
+<style>
+.write_new{
+padding: 25px;
+float: right;
+margin-right: 7px;
+font-size: 20px;
+margin-top: -60px;
+font-weight: bold;
+
+}
+
+.existing_news:hover{
+  opacity: 0.7;
+}
+
+.single_article{
+  margin-right: 70px;
+  margin-left: 25px;
+
+}
+
+</style>

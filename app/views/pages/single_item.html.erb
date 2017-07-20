@@ -1,33 +1,90 @@
 <br/>
 <ul class="breadcrumb">
-  <li class="#"><a href="#"> Action </a></li>
-  <li><a href="#">Details</a></li>
-  <li><a href="#">Preview</a></li>
+  <li class="#"><%= link_to (@book.item_name), single_item_path(@book)%> </li>
+  <li><a href="#" id="details_link">Details</a></li>
+
+  <% if (@book.document_file_name!=nil) %>
+  <li><%= link_to ("Book Preview"), @book.document.url %></li>
+  <% end %>
 </ul>
 <div class="row">
 <div class="col-md-6">
   <br/>
-  <img src="http://via.placeholder.com/400x500" class="img-responsive" />
+  <%= image_tag @book.image.url, :size=>"500x600" %>
 
 </div>
 <div class="col-md-6">
 <br/>
-<h3>Title, edition: Title&Title, Edition 4</h3><br/>
-<h3> Author: Name Surname  </h3><br/>
-<h4> Year published: YYYY </h4><br/>
-<h4> Currently available:  </h4> <br/>
+<div id="info">
+<h3><strong><%=@book.item_name%></strong>, Ed. <strong><%=@book.edition%></strong></h3><br/>
+<h3> Author: <strong><%=@book.author%> </strong> </h3><br/>
+<h4> Year published: <strong><%=@book.year_published%> </strong></h4><br/>
+<h4> Publisher: <strong><%=@book.publisher%></strong> </h4><br/>
+<% @l=Language.find_by_id(@book.language_id)%>
+<h4> Language: <strong><%=@l.language_name%></strong> </h4><br/>
+
+
+<h4> Currently available:  <strong><%=@book.on_stack%></strong>  </h4> <br/>
 <br/>
-<h4> ISBN:  </h4> <br/>
+<h4> ISBN:  <strong><%=@book.isbn %></strong>   </h4> <br/>
+
+<% if (@book.buy==true)%>
+<h4 style="float:right; margin-right:20%;"> Price:  <strong><%=@book.price %> BAM</strong>   </h4> <br/>
 <hr/>
-<a href="#" class="borrow_btn">Borrow</a>
-<a href="#" class="add_to_cart_btn">Add to my cart</a>
-<a href="#" class="buy_btn">Buy now</a>
+<% end %>
+
+
+<%if (current_user.ismember==true)%>
+<%= link_to ("Borrow"), root_path,  { :class => 'borrow_btn'}  %>
+<% else %>
+<%= link_to ("Borrow"), new_user_registration_path,  { :class => 'borrow_btn'}  %>
+<% end %>
+
+<% if (@book.buy==true) %>
+<%= link_to ("Add to my cart"), root_path,  { :class => 'add_to_cart_btn'}  %>
+<%= link_to ("Buy now"), root_path,  { :class => 'buy_btn'}  %>
+  <%else%>
+  <button class="buy_btn"> Not available for purchase </button>
+<% end %>
+</div>
+
+<div id="details">
+  <h3><strong><%=@book.item_name%></strong>, Ed. <strong><%=@book.edition%></strong></h3><br/>
+  <h3> Author: <strong><%=@book.author%> </strong> </h3><br/>
+  <p> <%= @book.description %></p><br/><br/><br/>
+  <% @c=Category.find_by_id(@book.category_id)%>
+  <% @s=Subcategory.find_by_id(@book.subcategory_id)%>
+  <% @t=Tag.find_by_id(@book.tag_id)%>
+  <p>Section: <strong><%= @c.category_name %>, <%= @s.subcategory_name %></strong></p><br/>
+  <p>Label: <strong><%= @t.tag_name %></strong></p><br/>
+
+</div>
+
 </div>
 
 </div>
 
 <br/><br/>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#details_link").click(function(){
+        $("#info").hide();
+          $("#details").show();
+          return false;
+    });
+
+});
+
+</script>
+
+
 <style>
+#details{
+  display: none;
+}
 img:hover{
   opacity: 0.6;
 }
@@ -104,6 +161,7 @@ img:hover{
 	position:relative;
 	top:1px;
 }
+
 
 
 </style>

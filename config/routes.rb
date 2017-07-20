@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   resources :pages
   #resources :edit
   devise_for :users
@@ -8,9 +9,9 @@ Rails.application.routes.draw do
 
   get 'profile' => 'pages#profile'
 
-  get 'news' => 'pages#news'
+  get 'pages/news/:id' => 'pages#news', as: :news
   get '/catalog' => 'pages#catalog'
-  get 'single_item' => 'pages#single_item'
+  get 'pages/single_item/:id' => 'pages#single_item', as: :single_item
 
 
 get 'edit/show'=> 'edit/show', as: 'edit'
@@ -54,7 +55,12 @@ post 'edit/new'=> 'edit/new', as: '_new'
 
   #news
   get 'news/show'=> 'news/show', as: 'edit_news'
+  get 'news/write_news'=> 'news/write_news', as: 'write_news'
+  post 'news/create'=> 'news/create', as: 'news_create'
+  get "news/single_news_edit/:id" => "news#single_news_edit", as: :single_news_edit
 
+  patch 'news/update' => 'news/update', as: 'news_update'
+  delete "news/single_news_delete/:id" => "news#single_news_delete", as: :single_news_delete
 
 
 

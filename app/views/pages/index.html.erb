@@ -30,21 +30,25 @@
   </div>
 
 
-<% for i in 0..2 %>
+<% for @i in @news %>
+<% @n=News.find_by_id(@i.id) %>
 <div class="row news_sector">
   <div class="col-md-6">
-    <img src="http://via.placeholder.com/500x400" />
+    <%= image_tag @n.cover_image.url, :size=>"500x400" %>
   </div>
 
   <div class="col-md-5 offset-md-1">
-    <h3> Some news </h3>
-    <p> April 13, 2014</p>
-    <a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tempus, urna sed lacinia suscipit, augue justo lobortis justo, et consectetur purus dolor at erat. Maecenas pulvinar aliquam nisl, at fringilla metus vestibulum id. Curabitur risus mauris, faucibus ut erat nec, vulputate sodales urna. Aliquam posuere sapien eu iaculis vehicula. Maecenas non laoreet lacus. Suspendisse vitae tempor felis. Pellentesque nec condimentum eros, vitae mattis quam. Proin purus enim, sagittis vitae scelerisque a, commodo non ligula. Nullam sed tincidunt ex, vitae ultrices magna. Curabitur fringilla ipsum non diam bibendum facilisis...</a>
+    <h3> <%= @n.title %> </h3>
+    <p> <%= @n.updated_at %> </p>
+    <p id="news_body"> <%= raw @n.news_body.truncate(250) %> </p>
+    <p style="color: blue;"><%= link_to "Read more...", news_path(@n) %> </p>
+
   </div>
 </div>
 
 
 <% end %>
+
 <center>
   <ul class="pagination">
     <li class="page-item"><a class="page-link" href="#"><<</a></li>
@@ -58,5 +62,10 @@
 <style>
 .news_sector{
   margin-bottom: 5%;
+}
+#news_body{
+  overflow: hidden;
+  font-size: 20px;
+  font-family: sans-serif;
 }
 </style>

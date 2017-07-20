@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170719170012) do
+ActiveRecord::Schema.define(version: 20170720133219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bootsy_image_galleries", force: :cascade do |t|
+    t.string   "bootsy_resource_type"
+    t.integer  "bootsy_resource_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bootsy_images", force: :cascade do |t|
+    t.string   "image_file"
+    t.integer  "image_gallery_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.text     "category_name"
@@ -38,12 +52,16 @@ ActiveRecord::Schema.define(version: 20170719170012) do
     t.integer  "language_id"
     t.boolean  "borrow"
     t.boolean  "buy"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
     t.index ["category_id"], name: "index_items_on_category_id", using: :btree
     t.index ["language_id"], name: "index_items_on_language_id", using: :btree
     t.index ["subcategory_id"], name: "index_items_on_subcategory_id", using: :btree
@@ -60,8 +78,12 @@ ActiveRecord::Schema.define(version: 20170719170012) do
     t.text     "title"
     t.text     "author"
     t.text     "news_body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "cover_image_file_name"
+    t.string   "cover_image_content_type"
+    t.integer  "cover_image_file_size"
+    t.datetime "cover_image_updated_at"
   end
 
   create_table "subcategories", force: :cascade do |t|

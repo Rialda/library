@@ -1,2 +1,29 @@
-<h1>Pages#news</h1>
-<p>Find me in app/views/pages/news.html.erb</p>
+<div class="article_view">
+  <center> <h1> <%= @n.title %>  </h1><br/>
+<%= image_tag @n.cover_image.url, :size=>"700x600" %> </center>
+<br/><br/><br/>
+<h5 id="news_body"> <%= raw @n.news_body %> </h5>
+
+
+<br/><br/><br/>
+
+<h6> Author: <%= @n.author %> </h6><br/><br/>
+<h6> <%= @n.updated_at %> </h6>
+</div>
+
+
+<style>
+
+h6{
+  float: right;
+}
+img:hover{
+  opacity: 0.7;
+}
+
+#news_body{
+  overflow: hidden;
+  font-size: 20px;
+  font-family: sans-serif;
+}
+</style>

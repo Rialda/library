@@ -1,0 +1,78 @@
+<div class="row">
+
+  <div class="col-md-12">
+
+<div class="form-group">
+<%= form_for @n, url: {action: "update", :id => @n.id} do |f| %>
+  <h3> Edit: </h3>
+  <%= image_tag @n.cover_image.url, :size=>"550x400" %>
+<br/><br/>
+  <strong>Created at: </strong><%= @n.created_at %><br/>
+  <strong>Last updated at: </strong> <%= @n.updated_at %>
+
+
+  <span class="deletion"> <%= link_to 'Delete this article', single_news_delete_path(@n),
+              data: {:confirm => 'Are you sure? This cannot be undone.'}, :method => :delete %></span>
+
+    </br></br></br>
+    <%= f.text_field :title, id:"ime1", class: "form-control", placeholder: "News Title" %></br>
+    <%= f.text_field :author, id:"ime2", class: "form-control", placeholder: "Author name" %></br>
+    <%= f.bootsy_area :news_body, id:"ime2", class: "form-control", placeholder: "Article text", rows: 30  %></br>
+
+  Replace the current image: <%= f.file_field :cover_image, id:"ime2", class: "form-control" %></br>
+
+
+<br/>
+
+
+  <%= f.submit "Save changes", class:"btn-info btn1" %>
+
+
+<% end %>
+
+
+
+</div>
+
+<br/>
+</div>
+
+
+
+
+
+</div>
+
+<style>
+.deletion{
+  float: right;
+  font-weight: bold;
+}
+select{
+margin-bottom: 4px;
+  background-color: rgba(255,255,255,0.2);
+  font-size: 18px;
+}
+.btn1{
+  paddng: 15px !important;
+  font-size: 18px;
+}
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  padding: 10px;
+}
+
+/* Might want to wrap a span around your checkbox text */
+.checkboxtext
+{
+  /* Checkbox text */
+  font-size: 110%;
+  display: inline;
+}
+
+</style>
