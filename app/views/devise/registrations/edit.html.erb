@@ -1,7 +1,10 @@
 <h3>Edit profile:
   <strong><%= current_user.firstname+' '+current_user.lastname%></strong></h3>
   <br/> <br/>
-
+<span style="float:right; margin-right: 3%; margin-top:-6%;">
+  <%= image_tag (current_user.avatar.url), :size=>"300x300" %>
+</span>
+<br/> <br/>
 <div class="edit_form">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
@@ -20,6 +23,11 @@
     <%= f.label "Last name" %><br />
     <%= f.text_field :lastname, :class=>'form-control' %>
   </div>
+<br/>
+<div class="field">
+  <%= f.label "Photo" %><br />
+  <%= f.file_field :avatar %>
+</div>
 <br/>
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>

@@ -63,6 +63,15 @@ post 'edit/new'=> 'edit/new', as: '_new'
   delete "news/single_news_delete/:id" => "news#single_news_delete", as: :single_news_delete
 
 
+#Editing_Users
+get 'editing_users/show'=> 'editing_users/show', as: 'editing_users'
+get "editing_users/single_user/:id" => "editing_users#single_user", as: :single_user
+get 'editing_users/reg_user'=> 'editing_users/reg_user', as: 'reg_user'
+patch 'editing_users/update' => 'editing_users/update', as: 'single_user_update'
+delete "editing_users/single_user_delete/:id" => "editing_users#single_user_delete", as: :single_user_delete
+post 'editing_users/create'=> 'editing_users/create', as: 'editing_users_create'
+
+
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

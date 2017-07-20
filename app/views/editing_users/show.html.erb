@@ -1,0 +1,80 @@
+
+<%= link_to ("Register a new user"), reg_user_path, {:class=>"btn-default btn-1"} %>
+<br/><br/><br/><br/>
+  <% @no=User.count %>
+<h3> Active users: <%= @no %> </h3>
+<hr/>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>Last sign in</th>
+        <th>Sign in count</th>
+        <th>Admin</th>
+        <th>Member</th>
+        <th>Guest</th>
+      </tr>
+    </thead
+    <% for @i in @users %>
+      <% @u=User.find_by_id(@i.id) %>
+
+    <tbody>
+
+
+      <tr>
+        <%if (@u.firstname!=nil)%>
+        <td> <%= link_to (@u.firstname), single_user_path(@u)%> </td>
+        <%else%>
+        <td><%= link_to ("//"), single_user_path(@u)%></td>
+        <%end%>
+
+        <%if (@u.lastname!=nil)%>
+        <td> <%= link_to (@u.lastname), single_user_path(@u)%> </td>
+        <%else%>
+        <td><%= link_to ("//"), single_user_path(@u)%></td>
+        <%end%>
+
+        <td><%= link_to (@u.email), single_user_path(@u)%></td>
+
+        <% if (@u.last_sign_in_at!=nil) %>
+        <td><%= link_to (@u.last_sign_in_at), single_user_path(@u)%></td>
+        <% else %>
+        <td><%= link_to ("Not available yet"), single_user_path(@u)%></td>
+
+        <%end%>
+
+        <td><%= link_to (@u.sign_in_count), single_user_path(@u)%></td>
+
+        <%if (@u.isadmin==true)%>
+        <td><%= link_to ("Yes"), single_user_path(@u)%></td>
+        <%else%>
+        <td><%= link_to ("No"), single_user_path(@u)%></td>
+        <%end%>
+
+        <%if (@u.ismember==true)%>
+        <td><%= link_to ("Yes"), single_user_path(@u)%></td>
+        <%else%>
+        <td><%= link_to ("No"), single_user_path(@u)%></td>
+        <%end%>
+
+        <%if (@u.isguest==true)%>
+        <td><%= link_to ("Yes"), single_user_path(@u)%></td>
+        <%else%>
+        <td><%= link_to ("No"), single_user_path(@u)%></td>
+        <%end%>      </tr>
+    </tbody>
+    <%end%>
+  </table>
+
+
+<style>
+.btn-1{
+  padding: 25px;
+  float: right;
+  margin-right: 3%;
+  margin-top: 2%;
+  font-weight: bold;
+}
+</style>

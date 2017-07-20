@@ -1,0 +1,65 @@
+<%= form_for User.new, url: {action: "create"} do |f| %>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Admin</th>
+      <th>Member</th>
+      <th>Guest</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= f.text_field :firstname, id:"ime1", class: "form-control", placeholder: "Firstname" %></td>
+      <td><%= f.text_field :lastname, id:"ime1", class: "form-control", placeholder: "Lastname" %></td>
+      <td><%= f.email_field :email, id:"ime1", class: "form-control", placeholder: "Email" %></td>
+      <td><%= f.text_field :password, id:"ime1", class: "form-control", placeholder: "Password" %></td>
+        <td><%= f.check_box :isadmin %> </td>
+        <td><%= f.check_box :ismember %> </td>
+        <td><%= f.check_box :isguest %> </td>
+     </tr>
+
+
+  </tbody>
+
+</table>&nbsp;
+<%= f.submit "Register", class:"btn-info btn1" %>
+
+<br/><br/>
+
+<% end %>
+<br/><br/>
+
+
+
+<style>
+
+
+.deletion{
+  float: right;
+}
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  padding: 10px;
+}
+
+/* Might want to wrap a span around your checkbox text */
+.checkboxtext
+{
+  /* Checkbox text */
+  font-size: 110%;
+  display: inline;
+}
+
+</style>

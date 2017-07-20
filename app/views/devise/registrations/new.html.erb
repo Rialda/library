@@ -36,6 +36,11 @@
     <%= f.password_field :password_confirmation, autocomplete: "off",  :class=>'form-control' %>
   </div>
 <br/>
+<div class="field">
+  <%= f.label "Photo: " %><br/>
+  <%= f.file_field :avatar%>
+</div>
+<br/>
   <div class="actions">
     <%= f.submit "Register",  :class=>'btn-info' %>
   </div>

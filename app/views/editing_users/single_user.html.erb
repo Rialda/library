@@ -1,0 +1,89 @@
+<span style="float:left; margin-top:2%; margin-bottom:2%; ">
+  <%= image_tag (@u.avatar.url), :size=>"100x100" %>&nbsp;<strong> <%= @u.firstname %> <%= @u.lastname %>, ID: <%= @u.id %> </strong><br/><br/>
+  &nbsp;<strong>Registered at: </strong> <%= @u.created_at %><br/>
+</span>
+
+<%= form_for @u, url: {action: "update", :id => @u.id} do |f| %>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Email</th>
+      <th>Admin</th>
+      <th>Member</th>
+      <th>Guest</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= f.text_field :firstname, id:"ime1", class: "form-control", placeholder: "Firstname" %></br></td>
+      <td><%= f.text_field :lastname, id:"ime1", class: "form-control", placeholder: "Lastname" %></br></td>
+      <td><%= f.email_field :email, id:"ime1", class: "form-control", placeholder: "Email" %></br></td>
+
+
+
+      <%if (@u.isadmin==true)%>
+      <td>&nbsp;&nbsp;&nbsp; <%= f.check_box :isadmin, :value=>true %> <br /><br/></td>
+      <%else%>
+      <td> &nbsp;&nbsp;&nbsp;<%= f.check_box :isadmin %> <br /><br/></td>
+      <%end%>
+
+      <%if (@u.ismember==true)%>
+      <td> &nbsp;&nbsp;&nbsp;<%= f.check_box :ismember, :value=>true %> <br /><br/></td>
+      <%else%>
+      <td> &nbsp;&nbsp;&nbsp;<%= f.check_box :ismember %> <br /><br/></td>
+      <%end%>
+
+      <%if (@u.isguest==true)%>
+      <td> &nbsp;&nbsp;&nbsp;<%= f.check_box :isguest, :value=>true %> <br /><br/></td>
+      <%else%>
+      <td> &nbsp;&nbsp;&nbsp;<%= f.check_box :isguest %> <br /><br/></td>
+      <%end%>
+
+
+     </tr>
+
+
+  </tbody>
+
+</table>&nbsp;
+<%= f.submit "Save user", class:"btn-info btn1" %>
+
+<br/><br/>
+
+
+  <span class="deletion"> <%= link_to 'Remove this user.', single_user_delete_path(@u),
+              data: {:confirm => 'Are you sure? This cannot be undone.'}, :method => :delete %></span>
+<% end %>
+<br/><br/>
+
+
+
+<style>
+
+.deletion{
+  float: right;
+}
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  padding: 10px;
+}
+
+/* Might want to wrap a span around your checkbox text */
+.checkboxtext
+{
+  /* Checkbox text */
+  font-size: 110%;
+  display: inline;
+}
+
+</style>
