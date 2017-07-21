@@ -34,4 +34,27 @@ class PagesController < ApplicationController
 
   end
 
+  def create
+  @cart=Cart.new(cart_params)
+    @cart_line=CartLine.new(cartline_params)
+    @cl=CartLine.where(:line_no=>current_user.id)
+  if (@cart.save && @cart_line.save)
+    flash[:alert] = "Added."
+    redirect_to :back
+  else
+    flash[:alert] = "Could not be added."
+    redirect_to :back
+
+  end
+  end
+
+
+  def cart_params
+    params.require(:cart).permit(:line_no, :total, :shipping, :user_id)
+  end
+  def cartline_params
+    params.require(:cart_line).permit(:line_no, :item_id, :single_price, :cart_id)
+  end
+
+
 end

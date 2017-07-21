@@ -75,6 +75,12 @@ post 'editing_users/create'=> 'editing_users/create', as: 'editing_users_create'
 get 'pages/category/:id'=> "pages#category", as: :selected_category
 get 'pages/subcategory/:id'=> "pages#subcategory", as: :selected_subcategory
 
+#cart
+get 'cart/show/:id'=> "cart#show", as: :cart_show
+
+#add to cart
+post 'pages/create'=> 'pages/create', as: 'cartadd_create'
+delete "cart/single_cart_item_delete/:id" => "cart#single_cart_item_delete", as: :single_cart_item_delete
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

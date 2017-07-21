@@ -1,0 +1,22 @@
+
+<div class="form-group">
+<%= form_for Cart.new, url: {action: "create"} do |f| %>
+<%=fields_for CartLine.new, url: {action: "create"} do |g| %>
+
+<%= g.hidden_field :line_no, value: current_user.id, id:"ime1", class: "form-control"%>
+<%= g.hidden_field :item_id, value: @book.id, id:"ime1", class: "form-control"%>
+<%= g.hidden_field :single_price, value: @book.price, id:"ime1", class: "form-control"%>
+<%= g.hidden_field :cart_id, value: 2, id:"ime1", class: "form-control"%>
+
+  <%= f.hidden_field :line_no, value: current_user.id, id:"ime1", class: "form-control"%>
+  <% @cid=Cart.find_by_user_id(current_user.id) %>
+  <%= f.hidden_field :total, value: @book.price+Cart.where(:line_no=>current_user.id).last.total, id:"ime1", class: "form-control"%>
+  <%= f.hidden_field :user_id, value: current_user.id, id:"ime1", class: "form-control"%>
+  <%= f.hidden_field :shipping, value: 30, id:"ime1", class: "form-control"%>
+
+
+
+  <%= f.submit "Add to my cart", class:"add_to_cart_btn" %>
+<% end %>
+<% end %>
+<%= link_to ("Buy now"), single_item_path(@book),  { :class => 'buy_btn'}  %>

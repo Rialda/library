@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170720155623) do
+ActiveRecord::Schema.define(version: 20170721155820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,27 @@ ActiveRecord::Schema.define(version: 20170720155623) do
     t.integer  "image_gallery_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "cart_lines", force: :cascade do |t|
+    t.integer  "line_no"
+    t.decimal  "single_price"
+    t.integer  "item_id"
+    t.integer  "cart_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["cart_id"], name: "index_cart_lines_on_cart_id", using: :btree
+    t.index ["item_id"], name: "index_cart_lines_on_item_id", using: :btree
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.integer  "line_no"
+    t.decimal  "total"
+    t.decimal  "shipping"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_carts_on_user_id", using: :btree
   end
 
   create_table "categories", force: :cascade do |t|
@@ -126,6 +147,9 @@ ActiveRecord::Schema.define(version: 20170720155623) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "cart_lines", "carts"
+  add_foreign_key "cart_lines", "items"
+  add_foreign_key "carts", "users"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "languages"
   add_foreign_key "items", "subcategories"

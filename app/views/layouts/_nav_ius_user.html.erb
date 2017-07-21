@@ -80,8 +80,10 @@
 
 
 
-        <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="/shelf.png" class="img-responsive" id="bookshelf" title="My bookshelf"/></a></li>
-        <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="/basket.png" class="img-responsive" id="basket" title="My cart"/></a></li>
+        <li><%= link_to image_tag('/shelf.png'), cart_show_path(current_user.id), {:class=>"img-responsive bookshelf"} %></li>
+
+        <li><%= link_to image_tag('/basket.png'), cart_show_path(current_user.id), {:class=>"img-responsive basket"} %></li>
+
         <li class="dropdown">
 
           <% if (current_user.avatar_file_name!=nil)%>
@@ -134,12 +136,13 @@
 #avatar:hover{
   opacity: 0.3;
 }
-#basket, #bookshelf{
+.basket img, .bookshelf img{
   margin-top: -8px !important;
-  max-width: 35px;
-  max-height:auto;
+width: 35px !important;
+height: auto !important;
+padding:0px;
 }
-#basket:hover, #bookshelf:hover{
+.basket:hover, .bookshelf:hover{
   opacity: 0.3;
 }
 </style>

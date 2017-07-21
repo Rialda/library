@@ -1,0 +1,57 @@
+
+<div class="row">
+<% for @j in @myitems %>
+<% @mybook = Item.find_by_id(@j.item_id)%>
+<div class="col-md-8">
+
+<div class="row">
+
+    <div class="col-md-4">
+      <%= image_tag @mybook.image.url, :size=>"200x300" %>
+    </div>
+    <div class="col-md-8">
+      <br/>
+      <%= @mybook.item_name %>, Ed. <%= @mybook.edition %><br/>
+      <%= @mybook.author %><br/>
+      <%= @mybook.publisher %><br/>
+      <strong><%= @mybook.price %></strong><br/><br/>
+
+    <u>  <%= link_to "See details", single_item_path(@mybook.id) %></u> <br/><br/>
+      <button class="btn btn-primary">
+        <span class="deletion"> <%= link_to 'Remove from my cart', single_cart_item_delete_path(@j.id),
+                    data: {:confirm => 'Are you sure? This cannot be undone.'}, :method => :delete %></span>
+
+      </button>
+
+    </div>
+
+</div>
+
+<br/>  <br/>  <br/>
+
+</div>
+
+<% end %>
+
+
+<div class="col-md-3 cart_details">
+<h4><strong> Cart details:</strong> </h4><br/>
+<h5> Total:  <strong> <%= @mycart.last.total %> BAM </strong></h5>
+<h5> Shipping:  <strong> <%= @mycart.last.shipping %> BAM </strong></h5>
+<h5><strong>_____________________________________</strong></h5>
+<h5 style="float: right;"> Bill:  <strong> <%= @mycart.last.shipping+@mycart.last.total %> BAM </strong></h5><br/><br/>
+
+<span style="float:right;"> <%= link_to "Continue to pay", root_path, {:class=>"btn btn-danger"} %></span>
+
+</div>
+
+
+
+</div>
+
+
+<style>
+.cart_details{
+top: 0%;
+}
+</style>
