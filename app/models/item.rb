@@ -9,4 +9,14 @@ validates_attachment :document, :content_type => { :content_type => %w(applicati
   belongs_to :subcategory
   belongs_to :tag
   belongs_to :language
+
+  def self.search(search)
+  if search
+    where('item_name LIKE ?', "%#{search}%")
+
+  else
+    where(nil)
+  end
+end
+
 end

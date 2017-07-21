@@ -71,6 +71,9 @@ patch 'editing_users/update' => 'editing_users/update', as: 'single_user_update'
 delete "editing_users/single_user_delete/:id" => "editing_users#single_user_delete", as: :single_user_delete
 post 'editing_users/create'=> 'editing_users/create', as: 'editing_users_create'
 
+#pages-categories-subcategories
+get 'pages/category/:id'=> "pages#category", as: :selected_category
+get 'pages/subcategory/:id'=> "pages#subcategory", as: :selected_subcategory
 
 
 

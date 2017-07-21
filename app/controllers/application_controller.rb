@@ -9,6 +9,7 @@ before_action :set_variables
 def set_variables
   @categories=Category.all
   @subcategories=Subcategory.all
+  @search_items=Item.all.search(params[:search])
 end
 
 protected

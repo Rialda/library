@@ -7,7 +7,7 @@ class ItemsEditController < ApplicationController
   def all_items
     @categories = Category.all
     @subcategories=Subcategory.all
-    @items=Item.all
+    @items=Item.all.search(params[:search]).paginate(:per_page => 9, :page => params[:page])
   end
 
 

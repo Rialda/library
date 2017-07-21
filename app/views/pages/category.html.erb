@@ -1,0 +1,76 @@
+<% @icount=@items.count %>
+
+<br/>
+<strong style="float:right;">
+
+  There
+<% if (@icount == 1 ) %>
+ is <%=@icount%> book
+<% else %>
+ are <%=@icount%> books
+ <%end%>
+  in this section
+</strong>
+<br/>
+<%= form_tag catalog_path, :method => 'get' do %>
+  <div class="form-group navbar-form searching_div">
+  <%= text_field_tag :search, params[:search], :class=>"form-control search_input", :placeholder=>"Search this section" %>
+  <%= submit_tag " ► ", :name => nil, :class=>" btn btn-default" %>
+  </div>
+</form>
+<% end %>
+
+
+<br/><br/><br/><br/>
+
+
+<% if (@icount>=1) %>
+
+
+<div class="row">
+
+<% for @i in @items %>
+
+<div class="col-md-4">
+  <%= link_to image_tag(@i.image.url, :size=>"250x300"),  single_item_path(@i.id)%><br/></br>
+  <h5><strong><%=@i.item_name%>, <%=@i.author%></strong></h5>
+  <h6> Ed.: <%=@i.edition%> </h6>
+  <h6> <%=@i.publisher%>, &nbsp;<%=@i.year_published%> </h6>
+  <br/><br/>
+</div>
+
+<% end %>
+
+
+</div>
+<center>
+  <%= will_paginate @items %>
+</center>
+
+
+<%else%>
+
+<h3> No books in this section yet. </h3>
+
+<%end %>
+
+
+
+
+
+
+
+
+
+<style>
+img:hover{
+opacity: 0.6;
+}
+.search_input{
+  width: 30%;
+}
+
+.searching_div{
+  float: right;
+}
+</style>

@@ -2,7 +2,7 @@ class EditingUsersController < ApplicationController
 
 
   def show
-    @users=User.all
+    @users=User.all.paginate(:per_page => 25, :page => params[:page])
   end
 
   def single_user

@@ -2,7 +2,7 @@ class NewsController < ApplicationController
 def show
   @categories=Category.all
   @subcategories=Subcategory.all
-  @news= News.all
+  @news= News.all.paginate(:per_page => 6, :page => params[:page])
 end
 
 def write_news
