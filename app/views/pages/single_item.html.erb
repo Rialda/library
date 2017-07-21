@@ -33,18 +33,25 @@
 <hr/>
 <% end %>
 
+<% if user_signed_in? %>
 
 <%if (current_user.ismember==true)%>
 <%= link_to ("Borrow"), root_path,  { :class => 'borrow_btn'}  %>
 <% else %>
-<%= link_to ("Borrow"), new_user_registration_path,  { :class => 'borrow_btn'}  %>
+<button class="borrow_btn" title="For members only"><del> Borrow</del></button>
 <% end %>
 
 <% if (@book.buy==true) %>
-<%= link_to ("Add to my cart"), root_path,  { :class => 'add_to_cart_btn'}  %>
-<%= link_to ("Buy now"), root_path,  { :class => 'buy_btn'}  %>
+<%= link_to ("Add to my cart"), single_item_path(@book),  { :class => 'add_to_cart_btn'}  %>
+<%= link_to ("Buy now"), single_item_path(@book),  { :class => 'buy_btn'}  %>
   <%else%>
   <button class="buy_btn"> Not available for purchase </button>
+<% end %>
+
+<%else%>
+<%= link_to ("Borrow"), new_user_registration_path,  { :class => 'borrow_btn'}  %>
+<%= link_to ("Add to my cart"), new_user_registration_path,  { :class => 'add_to_cart_btn'}  %>
+<%= link_to ("Buy now"), new_user_registration_path,  { :class => 'buy_btn'}  %>
 <% end %>
 </div>
 
