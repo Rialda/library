@@ -81,7 +81,7 @@ end
       # Find object using form parameters
        @t = Tag.find(params[:id])
        # Update the object
-       if @l.update_attributes(lang_params)
+       if @t.update_attributes(tag_params)
          # If update succeeds, redirect to the list action
          flash[:alert] = "Updated."
          redirect_to :back
@@ -92,8 +92,8 @@ end
     end
 
     def tag_del
-      @t = Language.find(params[:id])
-      @l.destroy
+      @t = Tag.find(params[:id])
+      @t.destroy
       redirect_to :back
     end
 

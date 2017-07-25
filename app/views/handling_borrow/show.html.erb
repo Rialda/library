@@ -1,0 +1,32 @@
+<div class="row">
+
+<div class="col-md-9">
+<% for @i in @shelves %>
+<% if (@i.reserved==true)%>
+  <% @b=Item.find_by_id(@i.item_id)%>
+  <% @u=User.find_by_id(@i.user_id)%>
+  <h4><strong>User: </strong><%= @u.firstname %>&nbsp;<%= @u.lastname %>,&nbsp; <strong>ID: </strong><%= @u.id %></h4><br/>
+  <h4><strong>Requested at: </strong><%= @b.created_at.to_date %></h4><br/>
+  <strong>Title: </strong><%= @b.item_name %><br/>
+  <strong>Author: </strong><%= @b.author %><br/>
+  <strong>ISBN: </strong><%= @b.isbn %><br/>
+  <u>  <%= link_to "See details", single_item_path(@b.id) %></u> <br/><br/>
+
+<%= link_to "Handle Request", handle_request_path(@i), {:class=>"btn btn-warning"} %>
+<hr/>
+
+
+
+<%end%>
+<% end %>
+
+</div>
+
+
+<div class="col-md-3">
+<button class="btn btn-danger"> <h4>List of borrowed books</h4> </button>
+</div>
+
+
+
+</div>

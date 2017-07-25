@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170724130344) do
+ActiveRecord::Schema.define(version: 20170725090221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,17 @@ ActiveRecord::Schema.define(version: 20170724130344) do
     t.datetime "cover_image_updated_at"
   end
 
+  create_table "shelves", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "item_id"
+    t.boolean  "reserved"
+    t.boolean  "borrowed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_shelves_on_item_id", using: :btree
+    t.index ["user_id"], name: "index_shelves_on_user_id", using: :btree
+  end
+
   create_table "subcategories", force: :cascade do |t|
     t.text     "subcategory_name"
     t.integer  "category_id"
@@ -155,5 +166,7 @@ ActiveRecord::Schema.define(version: 20170724130344) do
   add_foreign_key "items", "languages"
   add_foreign_key "items", "subcategories"
   add_foreign_key "items", "tags"
+  add_foreign_key "shelves", "items"
+  add_foreign_key "shelves", "users"
   add_foreign_key "subcategories", "categories"
 end

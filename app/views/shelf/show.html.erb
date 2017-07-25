@@ -1,0 +1,56 @@
+
+
+<div class="row">
+  <% for @i in @mybooks %>
+    <% @b=Item.find_by_id(@i.item_id)%>
+
+
+<div class="col-md-8 offset-md-2">
+<div class="row">
+
+    <div class="col-md-4">
+      <%= image_tag @b.image.url, :size=>"200x300" %><br/><br/>
+    </div>
+    <div class="col-md-6">
+
+             <strong>  <%= @b.item_name %><br/> </strong>
+              <u>  <%= link_to "See details", single_item_path(@b.id) %></u> <br/><br/>
+
+
+              <% if (@i.reserved==true)%>
+              <strong>Reserved at: </strong> <%= @i.created_at.to_date %><br/><p> (Waiting for borrow approval)
+                <button class="btn btn-primary">
+                  <%= link_to 'Cancel reservation', cancelreservation_path(@i.id),
+                              data: {:confirm => 'Are you sure? This cannot be undone.'}, :method => :delete %>
+                </button>
+              <% elsif (@i.borrowed==true) %>
+              <strong>Borrowed at: </strong> <%= @i.created_at.to_date %><br/>
+              <strong>Expected to return at: </strong> <%= @i.created_at.to_date+14.day %><br/>
+
+              <% else %>
+              <strong>No books on your shelves yet! </strong>
+
+              <%end%>
+      <br/><br/>
+
+    </div>
+
+</div>
+
+<br/>  <br/>  <br/>
+
+</div>
+
+<% end %>
+
+
+<div class="col-md-4">
+
+</div>
+
+
+
+
+
+
+</div>

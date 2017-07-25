@@ -1,0 +1,13 @@
+
+
+<div class="form-group">
+<%= form_for Shelf.new, url: {action: "shelfcreate"} do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id, id:"ime1", class: "form-control"%>
+  <%= f.hidden_field :item_id, value: @book.id, id:"ime1", class: "form-control"%>
+  <%= f.hidden_field :reserved, value: true, id:"ime1", class: "form-control"%>
+  <%= f.hidden_field :borrowed, value: false, id:"ime1", class: "form-control"%>
+
+
+
+  <%= f.submit "Borrow", class:"borrow_btn" %>
+<% end %>

@@ -87,5 +87,18 @@ delete "cart/single_cart_item_delete/:id" => "cart#single_cart_item_delete", as:
 get 'cart_line/show'=> 'cart_line/show', as: 'cart_line'
 
 
+#shelf
+post 'pages/shelfcreate'=> 'pages/shelfcreate', as: 'shelfnew_create'
+get 'shelf/show/:id'=> "shelf#show", as: :shelf_show
+delete "shelf/cancelreservation/:id" => "shelf#cancelreservation", as: :cancelreservation
+
+
+
+
+#HandlingBorrowController
+get 'handling_borrow/show'=> 'handling_borrow/show', as: 'handling_borrow'
+get 'handling_borrow/handle_request/:id'=> "handling_borrow#handle_request", as: :handle_request
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

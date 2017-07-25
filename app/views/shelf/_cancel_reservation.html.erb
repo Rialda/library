@@ -1,0 +1,9 @@
+
+<div class="form-group">
+<%= form_for @b, url: {action: "cancelreservation"} do |f| %>
+
+  <%= f.hidden_field :reserved, value: false, id:"ime1", class: "form-control"%>
+
+  <%= f.submit "Cancel reservation", class:"btn btn-default" %>
+<% end %>
+</div>

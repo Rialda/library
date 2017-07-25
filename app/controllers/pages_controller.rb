@@ -61,6 +61,17 @@ def initcreate
 
 end
 
+def shelfcreate
+@shelf=Shelf.new(shelf_params)
+if (@shelf.save)
+  flash[:alert] = "Reservation made."
+  redirect_to :back
+else
+  flash[:alert] = "Could not be reserved."
+  redirect_to :back
+
+end
+end
 
 
   def cart_params
@@ -68,6 +79,9 @@ end
   end
   def cartline_params
     params.require(:cart_line).permit(:line_no, :item_id, :single_price, :cart_id)
+  end
+  def shelf_params
+    params.require(:shelf).permit(:user_id, :item_id, :reserved, :borrowed)
   end
 
 
