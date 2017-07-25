@@ -92,6 +92,8 @@
             <%= image_tag (current_user.avatar.url), :id=>"avatar" %></a>
 
           <ul class="dropdown-menu">
+            <li><%= link_to('My cart', cart_show_path(current_user.id))%></li>
+            <li><%= link_to('My shelf', cart_show_path(current_user.id))%></li>
             <li><%= link_to(''+current_user.firstname+': Admin Profile', edit_user_registration_path)%></li>
             <li role="separator" class="divider"></li>
             <li><%= link_to('Log out', destroy_user_session_path, :method=> :delete) %></li>

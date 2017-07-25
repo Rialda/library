@@ -79,9 +79,9 @@
 
 
 
-        <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="/basket.png" class="img-responsive" id="basket" title="My cart"/></a></li>
+        <li><%= link_to image_tag('/basket.png'), cart_show_path(current_user.id), {:class=>"img-responsive basket"} %></li>
         <li class="dropdown">
-          
+
           <% if (current_user.avatar_file_name!=nil)%>
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             <%= image_tag (current_user.avatar.url), :id=>"avatar" %></a>
@@ -119,11 +119,7 @@
 .icon-bar{
   background-color: grey;
 }
-#ius_logo{
-  width: 70px;
-  height: auto;
-  margin-top: -20%;
-}
+
 #avatar{
   margin-top: -8px !important;
   max-width: 35px;
@@ -132,12 +128,13 @@
 #avatar:hover{
   opacity: 0.3;
 }
-#basket{
+.basket img, .bookshelf img{
   margin-top: -8px !important;
-  max-width: 35px;
-  max-height:auto;
+width: 35px !important;
+height: auto !important;
+padding:0px;
 }
-#basket:hover{
+.basket:hover, .bookshelf:hover{
   opacity: 0.3;
 }
 </style>

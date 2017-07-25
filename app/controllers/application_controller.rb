@@ -12,6 +12,8 @@ def set_variables
   @search_items=Item.all.search(params[:search])
 end
 
+
+
 protected
 
 def configure_permitted_parameters

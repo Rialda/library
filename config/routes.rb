@@ -80,7 +80,11 @@ get 'cart/show/:id'=> "cart#show", as: :cart_show
 
 #add to cart
 post 'pages/create'=> 'pages/create', as: 'cartadd_create'
+post 'pages/initcreate'=> 'pages/initcreate', as: 'cartadd_initcreate'
+
 delete "cart/single_cart_item_delete/:id" => "cart#single_cart_item_delete", as: :single_cart_item_delete
+
+get 'cart_line/show'=> 'cart_line/show', as: 'cart_line'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

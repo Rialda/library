@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170721155820) do
+ActiveRecord::Schema.define(version: 20170724130344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20170721155820) do
     t.string   "document_content_type"
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
+    t.integer  "on_stack_buy"
     t.index ["category_id"], name: "index_items_on_category_id", using: :btree
     t.index ["language_id"], name: "index_items_on_language_id", using: :btree
     t.index ["subcategory_id"], name: "index_items_on_subcategory_id", using: :btree

@@ -22,13 +22,13 @@ end
   def single_cart_item_delete
     @n = CartLine.find(params[:id])
     @mycart=Cart.where(:line_no=>current_user.id)
+    @mycart.last.total=@mycart.last.total-@n.single_price
 
     @n.destroy
-
-
-
     redirect_to cart_show_path(current_user.id)
   end
+
+
 
 
 

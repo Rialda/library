@@ -127,7 +127,7 @@ end
 
   private
   def item_params
-    params.require(:item).permit(:item_name, :author, :edition, :year_published, :publisher, :isbn, :on_stack, :price, :description, :category_id, :subcategory_id, :language_id, :tag_id, :borrow, :buy, :image, :document)
+    params.require(:item).permit(:item_name, :author, :edition, :year_published, :publisher, :isbn, :on_stack, :price, :description, :category_id, :subcategory_id, :language_id, :tag_id, :borrow, :buy, :image, :document, :on_stack_buy)
   end
 
   private

@@ -3,6 +3,7 @@ class PagesController < ApplicationController
     @categories=Category.all
     @subcategories=Subcategory.all
     @news=News.all.paginate(:per_page => 3, :page => params[:page])
+
   end
 
   def home
@@ -47,6 +48,19 @@ class PagesController < ApplicationController
 
   end
   end
+
+def initcreate
+
+      @cart=Cart.new(cart_params)
+      if @cart.save
+        redirect_to :back
+      else
+        redirect_to :back
+      end
+
+
+end
+
 
 
   def cart_params
