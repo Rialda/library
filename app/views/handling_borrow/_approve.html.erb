@@ -1,0 +1,8 @@
+<%= form_for @shelf, url: {action: "shelf_approve", :id => @shelf.id} do |f| %>
+
+<%= f.hidden_field :borrowed, value: true, id:"ime1", class: "form-control"%>
+<%= f.hidden_field :reserved, value: false, id:"ime1", class: "form-control"%>
+
+  <%= f.submit "APPROVE", class:"btn btn-success" %>
+
+<% end %>

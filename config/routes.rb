@@ -99,6 +99,11 @@ delete "shelf/cancelreservation/:id" => "shelf#cancelreservation", as: :cancelre
 get 'handling_borrow/show'=> 'handling_borrow/show', as: 'handling_borrow'
 get 'handling_borrow/handle_request/:id'=> "handling_borrow#handle_request", as: :handle_request
 
+get "handling_borrow/single_user_borrowedlist/:id" => "handling_borrow#single_user_borrowedlist", as: :single_user_borrowedlist
+
+delete "handling_borrow/disapprove/:id" => "handling_borrow#disapprove", as: :disapprove
+patch 'handling_borrow/shelf_approve' => 'handling_borrow/shelf_approve', as: 'shelf_approve'
+get 'handling_borrow/list_of_borrowed'=> 'handling_borrow/list_of_borrowed', as: 'list_of_borrowed'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

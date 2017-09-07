@@ -1,0 +1,22 @@
+  <ol>
+
+<% for @j in @shelves %>
+<% if (@j.borrowed==true)%>
+
+
+    <% @b=Item.find_by_id(@j.item_id) %>
+    <li><%= @b.item_name %>, <%= @b.author %>,
+       <%=link_to @b.isbn, single_item_path(@b.id) %>,
+     ID: <%= @j.item_id %><br/>
+      <%= link_to 'Member', single_user_path(@j.user_id) %><strong> <%= link_to @j.user_id, single_user_path(@j.user_id) %> </strong> <br/>
+     <strong>Borrowed on: </strong><%= @j.updated_at.to_date %><br/>
+     <strong>Expected to return: </strong> <%= @j.updated_at.to_date+14.day %><br/>
+     <button class="btn btn-success">        <%= link_to 'Returned', disapprove_path(@j.id),
+                           data: {:confirm => 'Are you sure? This cannot be undone.'}, :method => :delete %> </button>
+    </li>
+<% end %>
+<br/><br/>
+
+<% end %>
+
+</ol>

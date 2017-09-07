@@ -7,9 +7,11 @@
   <div class="col-md-4">
 
     <%= image_tag @u.avatar.url, :size=>"200x250" %><br/><br/>
-    <h4><strong>User: </strong><%= @u.firstname %>&nbsp;<%= @u.lastname %>,&nbsp; <strong>ID: </strong><%= @u.id %></h4><br/>
-    <h4><strong>Requested at: </strong><%= @b.created_at.to_date %></h4><br/>
+    <h4><strong>User: </strong><strong><%= link_to @u.firstname+' '+@u.lastname, single_user_borrowedlist_path(@u.id)%></strong>,&nbsp; <strong>ID: </strong><%= @u.id %></h4><br/>
 
+      <h4><strong>Requested at: </strong><%= @i.created_at.to_date %></h4><br/>
+
+    <br/><br/><br/>
 
 
    </div>
@@ -38,8 +40,11 @@
 
   <div class="col-md-4">
 
-    <h1 style="float:right;" class="btn btn-success"> APPROVE </h1><br/><br/><br/>
-    <h1 style="float:right;" class="btn btn-danger"> DISAPPROVE </h1>
+    <h1 style="float:right;" > <%= render 'approve' %> </h1><br/><br/><br/>
+    <h1 style="float:right;" class="btn btn-danger">
+       <%= link_to 'DISAPPROVE', disapprove_path(@i.id),
+                      data: {:confirm => 'Are you sure? This cannot be undone.'}, :method => :delete %>
+                     </h1>
 
 
    </div>

@@ -1,0 +1,23 @@
+ <br/> <br/>
+<strong>Currently borrowed books: </strong><br/><br/> <br/>
+<% @j=Shelf.find_by_user_id(@u.id) %>
+ <br/>
+
+ <% if (@j.borrowed==true) %>
+ <ol>
+ <% for @i in @she %>
+<% @b=Item.find_by_id(@j.item_id) %>
+<li><%= @b.item_name %>, <%= @b.author %>, <%= @b.isbn %>,
+ ID: <%= @j.item_id %><br/><strong>Borrowed on: </strong><%= @j.updated_at.to_date %><br/>
+ <strong>Expected to return: </strong> <%= @j.updated_at.to_date+14.day %><br/>
+
+</li><br/>
+ <%end%>
+ </ol>
+
+ <% else %>
+ <br/> <br/>
+ <%= 'No borrowed books on the shelf of '+@u.firstname+' '+@u.lastname %>
+ <% end %>
+
+<br/><br/> <br/>

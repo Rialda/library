@@ -24,8 +24,8 @@
                               data: {:confirm => 'Are you sure? This cannot be undone.'}, :method => :delete %>
                 </button>
               <% elsif (@i.borrowed==true) %>
-              <strong>Borrowed at: </strong> <%= @i.created_at.to_date %><br/>
-              <strong>Expected to return at: </strong> <%= @i.created_at.to_date+14.day %><br/>
+              <strong>Borrowed: </strong> <%= @i.created_at.to_date %><br/>
+              <strong>Expected to return: </strong> <%= @i.created_at.to_date+14.day %><br/>
 
               <% else %>
               <strong>No books on your shelves yet! </strong>

@@ -1,0 +1,10 @@
+
+<div class="form-group">
+<%= form_for @b, url: {action: "disapprove"} do |f| %>
+
+  <%= f.hidden_field :borrowed, value: true, id:"ime1", class: "form-control"%>
+  <%= f.hidden_field :reserved, value: false, id:"ime1", class: "form-control"%>
+
+  <%= f.submit "Disapprove", class:"btn btn-danger" %>
+<% end %>
+</div>

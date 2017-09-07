@@ -7,6 +7,7 @@ class EditingUsersController < ApplicationController
 
   def single_user
     @u=User.find_by_id(params[:id])
+    @shelf=Shelf.all
   end
 
   def update
