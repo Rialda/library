@@ -19,10 +19,10 @@
 
     <u>  <%= link_to "See details", single_item_path(@mybook.id) %></u> <br/><br/>
 
-      <button class="btn btn-primary">
-        <%= link_to 'Remove from my cart', single_cart_item_delete_path(@j.id),
-                    data: {:confirm => 'Are you sure? This cannot be undone.'}, :method => :delete %>
-      </button>
+    <button class="btn btn-primary">
+           <%= link_to 'Remove from my cart', single_cart_item_delete_path(@j.id),
+                       data: {:confirm => 'Are you sure? This cannot be undone.'}, :method => :delete %>
+         </button>
 
     </div>
 
@@ -44,7 +44,7 @@
 <h5><strong>______________________________________________________</strong></h5>
 <h5 style="float: right;"> Bill:  <strong> <%= @mycart.last.shipping+@mycart.last.total %> BAM </strong></h5><br/><br/>
 
-<span style="float:right;"> <%= link_to "Continue to pay", root_path, {:class=>"btn btn-danger"} %></span>
+<span style="float:right;"> <%= link_to "Continue to pay", addresses_path, {:class=>"btn btn-danger"} %></span>
 
 </div>
 <% else %>

@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170725090221) do
+ActiveRecord::Schema.define(version: 20170908090130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.text     "country"
+    t.text     "zip"
+    t.text     "city"
+    t.text     "phone"
+    t.text     "fullname"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
+  end
 
   create_table "bootsy_image_galleries", force: :cascade do |t|
     t.string   "bootsy_resource_type"
@@ -47,6 +59,7 @@ ActiveRecord::Schema.define(version: 20170725090221) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal  "item_price"
     t.index ["user_id"], name: "index_carts_on_user_id", using: :btree
   end
 
@@ -159,6 +172,7 @@ ActiveRecord::Schema.define(version: 20170725090221) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "addresses", "users"
   add_foreign_key "cart_lines", "carts"
   add_foreign_key "cart_lines", "items"
   add_foreign_key "carts", "users"

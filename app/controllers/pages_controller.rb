@@ -49,6 +49,19 @@ class PagesController < ApplicationController
   end
   end
 
+  def create2
+  @cart=Cart.new(cart_params)
+    @cart_line=CartLine.new(cartline_params)
+    @cl=CartLine.where(:line_no=>current_user.id)
+  if (@cart.save && @cart_line.save)
+    redirect_to  cart_show_path(current_user.id)
+  else
+    flash[:alert] = "Could not be added."
+    redirect_to :back
+
+  end
+  end
+
 def initcreate
 
       @cart=Cart.new(cart_params)

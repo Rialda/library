@@ -1,0 +1,8 @@
+
+<%= form_for @mycartupdate, url: {action: "cart_update", :id => @mycartupdate.id} do |f| %>
+
+<%= f.hidden_field :total, value: Cart.where(:line_no=>current_user.id).last.total-@mybook.price, id:"ime1", class: "form-control"%>
+
+  <%= f.submit "Remove" %>
+
+<% end %>

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   resources :pages
   #resources :edit
+  resources :charges
   devise_for :users
   root 'pages#index'
 
@@ -81,11 +82,16 @@ get 'cart/show/:id'=> "cart#show", as: :cart_show
 #add to cart
 post 'pages/create'=> 'pages/create', as: 'cartadd_create'
 post 'pages/initcreate'=> 'pages/initcreate', as: 'cartadd_initcreate'
+post 'pages/create2'=> 'pages/create2', as: 'cartadd_create2'
 
 delete "cart/single_cart_item_delete/:id" => "cart#single_cart_item_delete", as: :single_cart_item_delete
 
 get 'cart_line/show'=> 'cart_line/show', as: 'cart_line'
 
+patch 'cart/cart_update' => 'cart/cart_update', as: 'cart_update'
+
+get 'cart/addresses' => 'cart/addresses', as: 'addresses'
+post 'cart/create_address'=> 'cart/create_address', as: 'create_address'
 
 #shelf
 post 'pages/shelfcreate'=> 'pages/shelfcreate', as: 'shelfnew_create'
@@ -104,6 +110,10 @@ get "handling_borrow/single_user_borrowedlist/:id" => "handling_borrow#single_us
 delete "handling_borrow/disapprove/:id" => "handling_borrow#disapprove", as: :disapprove
 patch 'handling_borrow/shelf_approve' => 'handling_borrow/shelf_approve', as: 'shelf_approve'
 get 'handling_borrow/list_of_borrowed'=> 'handling_borrow/list_of_borrowed', as: 'list_of_borrowed'
+
+
+
+get 'charges/new' => 'charges/new', as: 'charges_new'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,27 @@
+<%= form_tag charges_path do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <label class="amount">
+      <span>Amount: <%= @mycart.last.total %> BAM</span><br/>
+      <span>Shipping: <%= @mycart.last.shipping %> BAM</span>
+<br/><br/>
+    </label>
+  </article>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button">
+  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+     data-name="IUS Bookstore"
+     data-description="Online Payment"
+     data-email="<%= current_user.email %>"
+     data-label="Total <%= @mycart.last.total %> KM"
+     data-amount="<%= @mycart.last.total*100 %>"
+     data-locale="auto"></script>
+
+        </script>
+<% end %>
+
+<br/><br/><br/><br/>

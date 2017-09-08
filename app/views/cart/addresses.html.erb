@@ -1,0 +1,50 @@
+<div class="form-group">
+<%= form_for Address.new, url: {action: "create_address"} do |f| %>
+  <h3> Add address: </h3>
+  <%= f.text_field :fullname, id:"ime1", class: "form-control", placeholder: "First name and Last name" %></br>
+  <%= f.text_field :country, id:"ime1", class: "form-control", placeholder: "Country" %></br>
+  <%= f.text_field :city, id:"ime2", class: "form-control", placeholder: "City" %></br>
+  <%= f.text_field :zip, id:"ime2", class: "form-control", placeholder: "ZIP" %></br>
+  <%= f.text_field :phone, id:"ime2", class: "form-control", placeholder: "Phone number " %></br>
+  <%= f.hidden_field :user_id, value: current_user.id, id:"ime1", class: "form-control"%>
+
+<br/>
+
+
+  <%= f.submit "Continue", class:"btn-info btn1" %>
+<% end %>
+
+</div>
+
+<br/>
+
+
+<style>
+select{
+margin-bottom: 4px;
+  background-color: rgba(255,255,255,0.2);
+  font-size: 18px;
+}
+.btn1{
+  paddng: 15px !important;
+  font-size: 18px;
+}
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  padding: 10px;
+}
+
+/* Might want to wrap a span around your checkbox text */
+.checkboxtext
+{
+  /* Checkbox text */
+  font-size: 110%;
+  display: inline;
+}
+
+</style>

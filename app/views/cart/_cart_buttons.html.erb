@@ -6,12 +6,13 @@
 <%= g.hidden_field :line_no, value: current_user.id, id:"ime1", class: "form-control"%>
 <%= g.hidden_field :item_id, value: @book.id, id:"ime1", class: "form-control"%>
 <%= g.hidden_field :single_price, value: @book.price, id:"ime1", class: "form-control"%>
-<%= g.hidden_field :cart_id, value: 2, id:"ime1", class: "form-control"%>
+<%= g.hidden_field :cart_id, value: current_user.id, id:"ime1", class: "form-control"%>
 
   <%= f.hidden_field :line_no, value: current_user.id, id:"ime1", class: "form-control"%>
   <% @cid=Cart.find_by_user_id(current_user.id) %>
   <%= f.hidden_field :total, value: @book.price+Cart.where(:line_no=>current_user.id).last.total, id:"ime1", class: "form-control"%>
   <%= f.hidden_field :user_id, value: current_user.id, id:"ime1", class: "form-control"%>
+  <%= f.hidden_field :item_price, value: @book.price, id:"ime1", class: "form-control"%>
   <%= f.hidden_field :shipping, value: 30, id:"ime1", class: "form-control"%>
 
 
@@ -20,4 +21,27 @@
 <% end %>
 <% end %>
 </div>
-<%= link_to ("Buy now"), single_item_path(@book),  { :class => 'buy_btn'}  %>
+
+
+<div class="form-group">
+<%= form_for Cart.new, url: {action: "create2"} do |f| %>
+<%=fields_for CartLine.new, url: {action: "create2"} do |g| %>
+
+<%= g.hidden_field :line_no, value: current_user.id, id:"ime1", class: "form-control"%>
+<%= g.hidden_field :item_id, value: @book.id, id:"ime1", class: "form-control"%>
+<%= g.hidden_field :single_price, value: @book.price, id:"ime1", class: "form-control"%>
+<%= g.hidden_field :cart_id, value: current_user.id, id:"ime1", class: "form-control"%>
+
+  <%= f.hidden_field :line_no, value: current_user.id, id:"ime1", class: "form-control"%>
+  <% @cid=Cart.find_by_user_id(current_user.id) %>
+  <%= f.hidden_field :total, value: @book.price+Cart.where(:line_no=>current_user.id).last.total, id:"ime1", class: "form-control"%>
+  <%= f.hidden_field :user_id, value: current_user.id, id:"ime1", class: "form-control"%>
+  <%= f.hidden_field :item_price, value: @book.price, id:"ime1", class: "form-control"%>
+  <%= f.hidden_field :shipping, value: 30, id:"ime1", class: "form-control"%>
+
+
+
+  <%= f.submit "Buy now", class:"buy_btn" %>
+<% end %>
+<% end %>
+</div>
