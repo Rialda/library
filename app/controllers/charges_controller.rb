@@ -1,7 +1,8 @@
 class ChargesController < ApplicationController
 
-  def new
+def new
     @mycart=Cart.where(:line_no=>current_user.id)
+    
 end
 
 def create
