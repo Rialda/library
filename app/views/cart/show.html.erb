@@ -39,10 +39,11 @@
 <div class="col-md-4 cart_details fixedElement">
 
 <h4><strong> Cart details:</strong> </h4><br/>
-<h5> Total:  <strong> <%= @mycart.last.total %> BAM </strong></h5>
+<% @total_price= CartLine.where(:line_no=>current_user.id).sum(:single_price) %>
+<h5> Total:  <strong> <%= @total_price %> BAM </strong></h5>
 <h5> Shipping:  <strong> <%= @mycart.last.shipping %> BAM </strong></h5>
 <h5><strong>______________________________________________________</strong></h5>
-<h5 style="float: right;"> Bill:  <strong> <%= @mycart.last.shipping+@mycart.last.total %> BAM </strong></h5><br/><br/>
+<h5 style="float: right;"> Bill:  <strong> <%= @mycart.last.shipping+@total_price %> BAM </strong></h5><br/><br/>
 
 <span style="float:right;"> <%= link_to "Continue to pay", addresses_path, {:class=>"btn btn-danger"} %></span>
 
