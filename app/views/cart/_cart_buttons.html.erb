@@ -14,7 +14,7 @@
 
   <%= f.hidden_field :line_no, value: current_user.id, id:"ime1", class: "form-control"%>
   <% @cid=Cart.find_by_user_id(current_user.id) %>
-  <%= f.hidden_field :total, value: @book.price+Cart.where(:line_no=>current_user.id).last.total, id:"ime1", class: "form-control"%>
+  <%= f.hidden_field :total, value: @book.price, id:"ime1", class: "form-control"%>
   <%= f.hidden_field :user_id, value: current_user.id, id:"ime1", class: "form-control"%>
   <%= f.hidden_field :item_price, value: @book.price, id:"ime1", class: "form-control"%>
   <%= f.hidden_field :shipping, value: 30, id:"ime1", class: "form-control"%>
@@ -44,7 +44,7 @@
 
   <%= f.hidden_field :line_no, value: current_user.id, id:"ime1", class: "form-control"%>
   <% @cid=Cart.find_by_user_id(current_user.id) %>
-  <%= f.hidden_field :total, value: @book.price+Cart.where(:line_no=>current_user.id).last.total, id:"ime1", class: "form-control"%>
+  <%= f.hidden_field :total, value: @book.price, id:"ime1", class: "form-control"%>
   <%= f.hidden_field :user_id, value: current_user.id, id:"ime1", class: "form-control"%>
   <%= f.hidden_field :item_price, value: @book.price, id:"ime1", class: "form-control"%>
   <%= f.hidden_field :shipping, value: 30, id:"ime1", class: "form-control"%>
