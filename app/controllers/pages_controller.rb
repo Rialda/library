@@ -22,6 +22,7 @@ class PagesController < ApplicationController
 
   def single_item
     @book=Item.find(params[:id])
+    @item = Item.find(params[:id])
   end
 
   def category
@@ -85,6 +86,35 @@ else
 
 end
 end
+
+def update_stack
+  # Find object using form parameters
+   @book = Item.find(params[:id])
+   # Update the object
+   if @book.update_attributes(item_params)
+     redirect_to :back
+   else
+     # If save fails, redisplay the form so user can fix problems
+     render('_')
+   end
+end
+
+
+def update_borrow_stack
+  # Find object using form parameters
+   @book = Item.find(params[:id])
+   # Update the object
+   if @book.update_attributes(item_params)
+     redirect_to :back
+   else
+     render('_')
+   end
+end
+
+def item_params
+  params.require(:item).permit(:on_stack_buy, :on_stack)
+end
+
 
 
   def cart_params

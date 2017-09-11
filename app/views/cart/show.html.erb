@@ -33,13 +33,13 @@
 </div>
 
 <% end %>
+<% @total_price= CartLine.where(:line_no=>current_user.id).sum(:single_price) %>
 
-<% if (@mycart.last.total>0)%>
+<% if (@total_price>0 || @total_price==nil)%>
 
 <div class="col-md-4 cart_details fixedElement">
 
 <h4><strong> Cart details:</strong> </h4><br/>
-<% @total_price= CartLine.where(:line_no=>current_user.id).sum(:single_price) %>
 <h5> Total:  <strong> <%= @total_price %> BAM </strong></h5>
 <h5> Shipping:  <strong> <%= @mycart.last.shipping %> BAM </strong></h5>
 <h5><strong>______________________________________________________</strong></h5>

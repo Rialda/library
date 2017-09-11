@@ -84,6 +84,10 @@ post 'pages/create'=> 'pages/create', as: 'cartadd_create'
 post 'pages/initcreate'=> 'pages/initcreate', as: 'cartadd_initcreate'
 post 'pages/create2'=> 'pages/create2', as: 'cartadd_create2'
 
+patch 'pages/update_stack'=> 'pages/update_stack', as: 'item_update_stack'
+patch 'pages/update_borrow_stack'=> 'pages/update_borrow_stack', as: 'update_borrow_stack'
+
+
 delete "cart/single_cart_item_delete/:id" => "cart#single_cart_item_delete", as: :single_cart_item_delete
 
 get 'cart_line/show'=> 'cart_line/show', as: 'cart_line'

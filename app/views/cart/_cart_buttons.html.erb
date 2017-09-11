@@ -2,6 +2,10 @@
 <div class="form-group">
 <%= form_for Cart.new, url: {action: "create"} do |f| %>
 <%=fields_for CartLine.new, url: {action: "create"} do |g| %>
+  <%=fields_for @book, url: {action: "update_stack", :id => @book.id} do |j| %>
+
+  <%= j.hidden_field :on_stack_buy, value: @book.on_stack_buy+1, id:"ime2", class: "form-control"%></br>
+
 
 <%= g.hidden_field :line_no, value: current_user.id, id:"ime1", class: "form-control"%>
 <%= g.hidden_field :item_id, value: @book.id, id:"ime1", class: "form-control"%>
@@ -10,15 +14,17 @@
 
   <%= f.hidden_field :line_no, value: current_user.id, id:"ime1", class: "form-control"%>
   <% @cid=Cart.find_by_user_id(current_user.id) %>
-  <%= f.hidden_field :total, value: @book.price+CartLine.where(:line_no=>current_user.id).last.single_price, id:"ime1", class: "form-control"%>
+  <%= f.hidden_field :total, value: @book.price+Cart.where(:line_no=>current_user.id).last.total, id:"ime1", class: "form-control"%>
   <%= f.hidden_field :user_id, value: current_user.id, id:"ime1", class: "form-control"%>
   <%= f.hidden_field :item_price, value: @book.price, id:"ime1", class: "form-control"%>
   <%= f.hidden_field :shipping, value: 30, id:"ime1", class: "form-control"%>
 
 
-
   <%= f.submit "Add to my cart", class:"add_to_cart_btn" %>
+
 <% end %>
+<% end %>
+
 <% end %>
 </div>
 
@@ -26,6 +32,10 @@
 <div class="form-group">
 <%= form_for Cart.new, url: {action: "create2"} do |f| %>
 <%=fields_for CartLine.new, url: {action: "create2"} do |g| %>
+<%=fields_for @book, url: {action: "update_stack", :id => @book.id} do |j| %>
+
+<%= j.hidden_field :on_stack_buy, value: @book.on_stack_buy-1, id:"ime2", class: "form-control"%></br>
+
 
 <%= g.hidden_field :line_no, value: current_user.id, id:"ime1", class: "form-control"%>
 <%= g.hidden_field :item_id, value: @book.id, id:"ime1", class: "form-control"%>
@@ -42,6 +52,7 @@
 
 
   <%= f.submit "Buy now", class:"buy_btn" %>
+<% end %>
 <% end %>
 <% end %>
 </div>

@@ -68,6 +68,23 @@ else
 end
 end
 
+    def update_stack
+      # Find object using form parameters
+       @item = Item.find(params[:id])
+       # Update the object
+       if @item.update_attributes(item_params)
+         # If update succeeds, redirect to the list action
+         flash[:alert] = "Updated."
+         redirect_to :back
+       else
+         # If save fails, redisplay the form so user can fix problems
+         render('_')
+       end
+    end
+
+    def item_params
+      params.require(:item).permit(:on_stack_buy)
+    end
 
 
   def cart_params
